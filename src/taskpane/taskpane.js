@@ -9,11 +9,11 @@
 
 Office.onReady((info) => {
   if (info.host === Office.HostType.Word) {
-    document.getElementById("noteThree").onclick = run;
+    document.getElementById("noteThree").onclick = insertTable;
 
     document.getElementById("consolidatedBalance").onclick = consolidatedBalanceProcess;
-
-    document.getElementById("noteEight").onclick = noteEightProcess;
+    
+    document.getElementById("noteEight").onclick = insertTableNoteEightProcess;
 
 
   }
@@ -45,844 +45,844 @@ Office.onReady((info) => {
 // }
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function consolidatedBalance() {
-  
+
   const data = {
     "headers": [
-        [{
-            "code": "",
-            "codeVector": null,
-            "description": "",
-            "dimension": "",
-            "indentation": 0,
-            "span": 1,
-            "column": 0
-        }, {
-            "code": "2023",
-            "codeVector": null,
-            "description": "",
-            "dimension": "Year",
-            "indentation": 0,
-            "span": 1,
-            "column": 1
-        }, {
-            "code": "2022",
-            "codeVector": null,
-            "description": "",
-            "dimension": "Year",
-            "indentation": 0,
-            "span": 1,
-            "column": 2
-        }]
+      [{
+        "code": "",
+        "codeVector": null,
+        "description": "",
+        "dimension": "",
+        "indentation": 0,
+        "span": 1,
+        "column": 0
+      }, {
+        "code": "2023",
+        "codeVector": null,
+        "description": "",
+        "dimension": "Year",
+        "indentation": 0,
+        "span": 1,
+        "column": 1
+      }, {
+        "code": "2022",
+        "codeVector": null,
+        "description": "",
+        "dimension": "Year",
+        "indentation": 0,
+        "span": 1,
+        "column": 2
+      }]
     ],
     "rows": [{
-        "header": {
-            "code": "ASSETS",
-            "codeVector": null,
-            "description": "",
-            "dimension": "Code",
-            "indentation": 0,
-            "span": 1,
-            "column": 0
-        },
-        "values": []
+      "header": {
+        "code": "ASSETS",
+        "codeVector": null,
+        "description": "",
+        "dimension": "Code",
+        "indentation": 0,
+        "span": 1,
+        "column": 0
+      },
+      "values": []
     }, {
-        "header": {
-            "code": "1099",
-            "codeVector": null,
-            "description": "Immaterial assets",
-            "dimension": "Code",
-            "indentation": 0,
-            "span": 1,
-            "column": 0
-        },
-        "values": [{
-            "value": 2784370.284099999,
-            "format": "#,##0",
-            "column": 1,
-            "inputValidationErrors": null
-        }, {
-            "value": 2722491.656499999,
-            "format": "#,##0",
-            "column": 2,
-            "inputValidationErrors": null
-        }]
+      "header": {
+        "code": "1099",
+        "codeVector": null,
+        "description": "Immaterial assets",
+        "dimension": "Code",
+        "indentation": 0,
+        "span": 1,
+        "column": 0
+      },
+      "values": [{
+        "value": 2784370.284099999,
+        "format": "#,##0",
+        "column": 1,
+        "inputValidationErrors": null
+      }, {
+        "value": 2722491.656499999,
+        "format": "#,##0",
+        "column": 2,
+        "inputValidationErrors": null
+      }]
     }, {
-        "header": {
-            "code": "1199",
-            "codeVector": null,
-            "description": "Land and buildings",
-            "dimension": "Code",
-            "indentation": 0,
-            "span": 1,
-            "column": 0
-        },
-        "values": [{
-            "value": 3672367.8959,
-            "format": "#,##0",
-            "column": 1,
-            "inputValidationErrors": null
-        }, {
-            "value": 3553843.8897999995,
-            "format": "#,##0",
-            "column": 2,
-            "inputValidationErrors": null
-        }]
+      "header": {
+        "code": "1199",
+        "codeVector": null,
+        "description": "Land and buildings",
+        "dimension": "Code",
+        "indentation": 0,
+        "span": 1,
+        "column": 0
+      },
+      "values": [{
+        "value": 3672367.8959,
+        "format": "#,##0",
+        "column": 1,
+        "inputValidationErrors": null
+      }, {
+        "value": 3553843.8897999995,
+        "format": "#,##0",
+        "column": 2,
+        "inputValidationErrors": null
+      }]
     }, {
-        "header": {
-            "code": "1299",
-            "codeVector": null,
-            "description": "Tangible fixed assets",
-            "dimension": "Code",
-            "indentation": 0,
-            "span": 1,
-            "column": 0
-        },
-        "values": [{
-            "value": 4938422.7688,
-            "format": "#,##0",
-            "column": 1,
-            "inputValidationErrors": null
-        }, {
-            "value": 4710700.190399999,
-            "format": "#,##0",
-            "column": 2,
-            "inputValidationErrors": null
-        }]
+      "header": {
+        "code": "1299",
+        "codeVector": null,
+        "description": "Tangible fixed assets",
+        "dimension": "Code",
+        "indentation": 0,
+        "span": 1,
+        "column": 0
+      },
+      "values": [{
+        "value": 4938422.7688,
+        "format": "#,##0",
+        "column": 1,
+        "inputValidationErrors": null
+      }, {
+        "value": 4710700.190399999,
+        "format": "#,##0",
+        "column": 2,
+        "inputValidationErrors": null
+      }]
     }, {
-        "header": {
-            "code": "1399",
-            "codeVector": null,
-            "description": "Financial fixed assets",
-            "dimension": "Code",
-            "indentation": 0,
-            "span": 1,
-            "column": 0
-        },
-        "values": [{
-            "value": 1227453.1841000002,
-            "format": "#,##0",
-            "column": 1,
-            "inputValidationErrors": null
-        }, {
-            "value": 7719189.613299999,
-            "format": "#,##0",
-            "column": 2,
-            "inputValidationErrors": null
-        }]
+      "header": {
+        "code": "1399",
+        "codeVector": null,
+        "description": "Financial fixed assets",
+        "dimension": "Code",
+        "indentation": 0,
+        "span": 1,
+        "column": 0
+      },
+      "values": [{
+        "value": 1227453.1841000002,
+        "format": "#,##0",
+        "column": 1,
+        "inputValidationErrors": null
+      }, {
+        "value": 7719189.613299999,
+        "format": "#,##0",
+        "column": 2,
+        "inputValidationErrors": null
+      }]
     }, {
-        "header": {
-            "code": "1499",
-            "codeVector": null,
-            "description": "Inventories and prod/work in progress",
-            "dimension": "Code",
-            "indentation": 0,
-            "span": 1,
-            "column": 0
-        },
-        "values": [{
-            "value": 530428.7646,
-            "format": "#,##0",
-            "column": 1,
-            "inputValidationErrors": null
-        }, {
-            "value": 1023793.2161,
-            "format": "#,##0",
-            "column": 2,
-            "inputValidationErrors": null
-        }]
+      "header": {
+        "code": "1499",
+        "codeVector": null,
+        "description": "Inventories and prod/work in progress",
+        "dimension": "Code",
+        "indentation": 0,
+        "span": 1,
+        "column": 0
+      },
+      "values": [{
+        "value": 530428.7646,
+        "format": "#,##0",
+        "column": 1,
+        "inputValidationErrors": null
+      }, {
+        "value": 1023793.2161,
+        "format": "#,##0",
+        "column": 2,
+        "inputValidationErrors": null
+      }]
     }, {
-        "header": {
-            "code": "1599",
-            "codeVector": null,
-            "description": "Accounts receivable",
-            "dimension": "Code",
-            "indentation": 0,
-            "span": 1,
-            "column": 0
-        },
-        "values": [{
-            "value": 5476167.5607,
-            "format": "#,##0",
-            "column": 1,
-            "inputValidationErrors": null
-        }, {
-            "value": 2439469.66,
-            "format": "#,##0",
-            "column": 2,
-            "inputValidationErrors": null
-        }]
+      "header": {
+        "code": "1599",
+        "codeVector": null,
+        "description": "Accounts receivable",
+        "dimension": "Code",
+        "indentation": 0,
+        "span": 1,
+        "column": 0
+      },
+      "values": [{
+        "value": 5476167.5607,
+        "format": "#,##0",
+        "column": 1,
+        "inputValidationErrors": null
+      }, {
+        "value": 2439469.66,
+        "format": "#,##0",
+        "column": 2,
+        "inputValidationErrors": null
+      }]
     }, {
-        "header": {
-            "code": "1699",
-            "codeVector": null,
-            "description": "Other current receivables",
-            "dimension": "Code",
-            "indentation": 0,
-            "span": 1,
-            "column": 0
-        },
-        "values": [{
-            "value": 624037.702,
-            "format": "#,##0",
-            "column": 1,
-            "inputValidationErrors": null
-        }, {
-            "value": 1849449.3997,
-            "format": "#,##0",
-            "column": 2,
-            "inputValidationErrors": null
-        }]
+      "header": {
+        "code": "1699",
+        "codeVector": null,
+        "description": "Other current receivables",
+        "dimension": "Code",
+        "indentation": 0,
+        "span": 1,
+        "column": 0
+      },
+      "values": [{
+        "value": 624037.702,
+        "format": "#,##0",
+        "column": 1,
+        "inputValidationErrors": null
+      }, {
+        "value": 1849449.3997,
+        "format": "#,##0",
+        "column": 2,
+        "inputValidationErrors": null
+      }]
     }, {
-        "header": {
-            "code": "1799",
-            "codeVector": null,
-            "description": "Prepaid expenses and accrued income",
-            "dimension": "Code",
-            "indentation": 0,
-            "span": 1,
-            "column": 0
-        },
-        "values": [{
-            "value": 863263.0499999999,
-            "format": "#,##0",
-            "column": 1,
-            "inputValidationErrors": null
-        }, {
-            "value": 2311087.4335000003,
-            "format": "#,##0",
-            "column": 2,
-            "inputValidationErrors": null
-        }]
+      "header": {
+        "code": "1799",
+        "codeVector": null,
+        "description": "Prepaid expenses and accrued income",
+        "dimension": "Code",
+        "indentation": 0,
+        "span": 1,
+        "column": 0
+      },
+      "values": [{
+        "value": 863263.0499999999,
+        "format": "#,##0",
+        "column": 1,
+        "inputValidationErrors": null
+      }, {
+        "value": 2311087.4335000003,
+        "format": "#,##0",
+        "column": 2,
+        "inputValidationErrors": null
+      }]
     }, {
-        "header": {
-            "code": "1899",
-            "codeVector": null,
-            "description": "Short-term investments",
-            "dimension": "Code",
-            "indentation": 0,
-            "span": 1,
-            "column": 0
-        },
-        "values": [{
-            "value": 240438.24000000002,
-            "format": "#,##0",
-            "column": 1,
-            "inputValidationErrors": null
-        }, {
-            "value": 879121.29,
-            "format": "#,##0",
-            "column": 2,
-            "inputValidationErrors": null
-        }]
+      "header": {
+        "code": "1899",
+        "codeVector": null,
+        "description": "Short-term investments",
+        "dimension": "Code",
+        "indentation": 0,
+        "span": 1,
+        "column": 0
+      },
+      "values": [{
+        "value": 240438.24000000002,
+        "format": "#,##0",
+        "column": 1,
+        "inputValidationErrors": null
+      }, {
+        "value": 879121.29,
+        "format": "#,##0",
+        "column": 2,
+        "inputValidationErrors": null
+      }]
     }, {
-        "header": {
-            "code": "1999",
-            "codeVector": null,
-            "description": "Cash and bank",
-            "dimension": "Code",
-            "indentation": 0,
-            "span": 1,
-            "column": 0
-        },
-        "values": [{
-            "value": 8839193.112200001,
-            "format": "#,##0",
-            "column": 1,
-            "inputValidationErrors": null
-        }, {
-            "value": 6166926.1796,
-            "format": "#,##0",
-            "column": 2,
-            "inputValidationErrors": null
-        }]
+      "header": {
+        "code": "1999",
+        "codeVector": null,
+        "description": "Cash and bank",
+        "dimension": "Code",
+        "indentation": 0,
+        "span": 1,
+        "column": 0
+      },
+      "values": [{
+        "value": 8839193.112200001,
+        "format": "#,##0",
+        "column": 1,
+        "inputValidationErrors": null
+      }, {
+        "value": 6166926.1796,
+        "format": "#,##0",
+        "column": 2,
+        "inputValidationErrors": null
+      }]
     }, {
-        "header": {
-            "code": "1TA",
-            "codeVector": null,
-            "description": "TOTAL ASSETS",
-            "dimension": "Code",
-            "indentation": 0,
-            "span": 1,
-            "column": 0
-        },
-        "values": [{
-            "value": 2.919614256240001E7,
-            "format": "#,##0",
-            "column": 1,
-            "inputValidationErrors": null
-        }, {
-            "value": 3.3376072528900005E7,
-            "format": "#,##0",
-            "column": 2,
-            "inputValidationErrors": null
-        }]
+      "header": {
+        "code": "1TA",
+        "codeVector": null,
+        "description": "TOTAL ASSETS",
+        "dimension": "Code",
+        "indentation": 0,
+        "span": 1,
+        "column": 0
+      },
+      "values": [{
+        "value": 2.919614256240001E7,
+        "format": "#,##0",
+        "column": 1,
+        "inputValidationErrors": null
+      }, {
+        "value": 3.3376072528900005E7,
+        "format": "#,##0",
+        "column": 2,
+        "inputValidationErrors": null
+      }]
     }, {
-        "header": {
-            "code": "LIABILITIES",
-            "codeVector": null,
-            "description": "",
-            "dimension": "Code",
-            "indentation": 0,
-            "span": 1,
-            "column": 0
-        },
-        "values": []
+      "header": {
+        "code": "LIABILITIES",
+        "codeVector": null,
+        "description": "",
+        "dimension": "Code",
+        "indentation": 0,
+        "span": 1,
+        "column": 0
+      },
+      "values": []
     }, {
-        "header": {
-            "code": "2081",
-            "codeVector": null,
-            "description": "Share capital",
-            "dimension": "Code",
-            "indentation": 0,
-            "span": 1,
-            "column": 0
-        },
-        "values": [{
-            "value": 5000.3515,
-            "format": "#,##0",
-            "column": 1,
-            "inputValidationErrors": null
-        }, {
-            "value": 5000.3515,
-            "format": "#,##0",
-            "column": 2,
-            "inputValidationErrors": null
-        }]
+      "header": {
+        "code": "2081",
+        "codeVector": null,
+        "description": "Share capital",
+        "dimension": "Code",
+        "indentation": 0,
+        "span": 1,
+        "column": 0
+      },
+      "values": [{
+        "value": 5000.3515,
+        "format": "#,##0",
+        "column": 1,
+        "inputValidationErrors": null
+      }, {
+        "value": 5000.3515,
+        "format": "#,##0",
+        "column": 2,
+        "inputValidationErrors": null
+      }]
     }, {
-        "header": {
-            "code": "2082",
-            "codeVector": null,
-            "description": "Unregistered share capital",
-            "dimension": "Code",
-            "indentation": 0,
-            "span": 1,
-            "column": 0
-        },
-        "values": []
+      "header": {
+        "code": "2082",
+        "codeVector": null,
+        "description": "Unregistered share capital",
+        "dimension": "Code",
+        "indentation": 0,
+        "span": 1,
+        "column": 0
+      },
+      "values": []
     }, {
-        "header": {
-            "code": "2085",
-            "codeVector": null,
-            "description": "Revaluation reserve",
-            "dimension": "Code",
-            "indentation": 0,
-            "span": 1,
-            "column": 0
-        },
-        "values": [{
-            "value": -42636.839,
-            "format": "#,##0",
-            "column": 1,
-            "inputValidationErrors": null
-        }, {
-            "value": -42636.839,
-            "format": "#,##0",
-            "column": 2,
-            "inputValidationErrors": null
-        }]
+      "header": {
+        "code": "2085",
+        "codeVector": null,
+        "description": "Revaluation reserve",
+        "dimension": "Code",
+        "indentation": 0,
+        "span": 1,
+        "column": 0
+      },
+      "values": [{
+        "value": -42636.839,
+        "format": "#,##0",
+        "column": 1,
+        "inputValidationErrors": null
+      }, {
+        "value": -42636.839,
+        "format": "#,##0",
+        "column": 2,
+        "inputValidationErrors": null
+      }]
     }, {
-        "header": {
-            "code": "2086",
-            "codeVector": null,
-            "description": "Statutory reserve",
-            "dimension": "Code",
-            "indentation": 0,
-            "span": 1,
-            "column": 0
-        },
-        "values": [{
-            "value": -19137.7374,
-            "format": "#,##0",
-            "column": 1,
-            "inputValidationErrors": null
-        }, {
-            "value": -19137.7374,
-            "format": "#,##0",
-            "column": 2,
-            "inputValidationErrors": null
-        }]
+      "header": {
+        "code": "2086",
+        "codeVector": null,
+        "description": "Statutory reserve",
+        "dimension": "Code",
+        "indentation": 0,
+        "span": 1,
+        "column": 0
+      },
+      "values": [{
+        "value": -19137.7374,
+        "format": "#,##0",
+        "column": 1,
+        "inputValidationErrors": null
+      }, {
+        "value": -19137.7374,
+        "format": "#,##0",
+        "column": 2,
+        "inputValidationErrors": null
+      }]
     }, {
-        "header": {
-            "code": "2087",
-            "codeVector": null,
-            "description": "Equity share, associated companies",
-            "dimension": "Code",
-            "indentation": 0,
-            "span": 1,
-            "column": 0
-        },
-        "values": [{
-            "value": -1066.6447000000007,
-            "format": "#,##0",
-            "column": 1,
-            "inputValidationErrors": null
-        }, {
-            "value": -11850.144799999998,
-            "format": "#,##0",
-            "column": 2,
-            "inputValidationErrors": null
-        }]
+      "header": {
+        "code": "2087",
+        "codeVector": null,
+        "description": "Equity share, associated companies",
+        "dimension": "Code",
+        "indentation": 0,
+        "span": 1,
+        "column": 0
+      },
+      "values": [{
+        "value": -1066.6447000000007,
+        "format": "#,##0",
+        "column": 1,
+        "inputValidationErrors": null
+      }, {
+        "value": -11850.144799999998,
+        "format": "#,##0",
+        "column": 2,
+        "inputValidationErrors": null
+      }]
     }, {
-        "header": {
-            "code": "20RE",
-            "codeVector": null,
-            "description": "Restricted equity",
-            "dimension": "Code",
-            "indentation": 0,
-            "span": 1,
-            "column": 0
-        },
-        "values": [{
-            "value": -64971.891,
-            "format": "#,##0",
-            "column": 1,
-            "inputValidationErrors": null
-        }, {
-            "value": -64430.51509999999,
-            "format": "#,##0",
-            "column": 2,
-            "inputValidationErrors": null
-        }]
+      "header": {
+        "code": "20RE",
+        "codeVector": null,
+        "description": "Restricted equity",
+        "dimension": "Code",
+        "indentation": 0,
+        "span": 1,
+        "column": 0
+      },
+      "values": [{
+        "value": -64971.891,
+        "format": "#,##0",
+        "column": 1,
+        "inputValidationErrors": null
+      }, {
+        "value": -64430.51509999999,
+        "format": "#,##0",
+        "column": 2,
+        "inputValidationErrors": null
+      }]
     }, {
-        "header": {
-            "code": "2091",
-            "codeVector": null,
-            "description": "Retained profit",
-            "dimension": "Code",
-            "indentation": 0,
-            "span": 1,
-            "column": 0
-        },
-        "values": [{
-            "value": 1356545.3476,
-            "format": "#,##0",
-            "column": 1,
-            "inputValidationErrors": null
-        }, {
-            "value": 918665.3622,
-            "format": "#,##0",
-            "column": 2,
-            "inputValidationErrors": null
-        }]
+      "header": {
+        "code": "2091",
+        "codeVector": null,
+        "description": "Retained profit",
+        "dimension": "Code",
+        "indentation": 0,
+        "span": 1,
+        "column": 0
+      },
+      "values": [{
+        "value": 1356545.3476,
+        "format": "#,##0",
+        "column": 1,
+        "inputValidationErrors": null
+      }, {
+        "value": 918665.3622,
+        "format": "#,##0",
+        "column": 2,
+        "inputValidationErrors": null
+      }]
     }, {
-        "header": {
-            "code": "2094",
-            "codeVector": null,
-            "description": "Own shares",
-            "dimension": "Code",
-            "indentation": 0,
-            "span": 1,
-            "column": 0
-        },
-        "values": []
+      "header": {
+        "code": "2094",
+        "codeVector": null,
+        "description": "Own shares",
+        "dimension": "Code",
+        "indentation": 0,
+        "span": 1,
+        "column": 0
+      },
+      "values": []
     }, {
-        "header": {
-            "code": "2096",
-            "codeVector": null,
-            "description": "Reserves (not IS)",
-            "dimension": "Code",
-            "indentation": 0,
-            "span": 1,
-            "column": 0
-        },
-        "values": [{
-            "value": 280.0,
-            "format": "#,##0",
-            "column": 1,
-            "inputValidationErrors": null
-        }, {
-            "value": 280.0,
-            "format": "#,##0",
-            "column": 2,
-            "inputValidationErrors": null
-        }]
+      "header": {
+        "code": "2096",
+        "codeVector": null,
+        "description": "Reserves (not IS)",
+        "dimension": "Code",
+        "indentation": 0,
+        "span": 1,
+        "column": 0
+      },
+      "values": [{
+        "value": 280.0,
+        "format": "#,##0",
+        "column": 1,
+        "inputValidationErrors": null
+      }, {
+        "value": 280.0,
+        "format": "#,##0",
+        "column": 2,
+        "inputValidationErrors": null
+      }]
     }, {
-        "header": {
-            "code": "2097",
-            "codeVector": null,
-            "description": "Share premium reserve",
-            "dimension": "Code",
-            "indentation": 0,
-            "span": 1,
-            "column": 0
-        },
-        "values": []
+      "header": {
+        "code": "2097",
+        "codeVector": null,
+        "description": "Share premium reserve",
+        "dimension": "Code",
+        "indentation": 0,
+        "span": 1,
+        "column": 0
+      },
+      "values": []
     }, {
-        "header": {
-            "code": "2099",
-            "codeVector": null,
-            "description": "Net income",
-            "dimension": "Code",
-            "indentation": 0,
-            "span": 1,
-            "column": 0
-        },
-        "values": [{
-            "value": 299857.7942,
-            "format": "#,##0",
-            "column": 1,
-            "inputValidationErrors": null
-        }, {
-            "value": 419490.7998999998,
-            "format": "#,##0",
-            "column": 2,
-            "inputValidationErrors": null
-        }]
+      "header": {
+        "code": "2099",
+        "codeVector": null,
+        "description": "Net income",
+        "dimension": "Code",
+        "indentation": 0,
+        "span": 1,
+        "column": 0
+      },
+      "values": [{
+        "value": 299857.7942,
+        "format": "#,##0",
+        "column": 1,
+        "inputValidationErrors": null
+      }, {
+        "value": 419490.7998999998,
+        "format": "#,##0",
+        "column": 2,
+        "inputValidationErrors": null
+      }]
     }, {
-        "header": {
-            "code": "20UE",
-            "codeVector": null,
-            "description": "Unrestricted equity",
-            "dimension": "Code",
-            "indentation": 0,
-            "span": 1,
-            "column": 0
-        },
-        "values": [{
-            "value": 1878792.5190999997,
-            "format": "#,##0",
-            "column": 1,
-            "inputValidationErrors": null
-        }, {
-            "value": 1563028.4264,
-            "format": "#,##0",
-            "column": 2,
-            "inputValidationErrors": null
-        }]
+      "header": {
+        "code": "20UE",
+        "codeVector": null,
+        "description": "Unrestricted equity",
+        "dimension": "Code",
+        "indentation": 0,
+        "span": 1,
+        "column": 0
+      },
+      "values": [{
+        "value": 1878792.5190999997,
+        "format": "#,##0",
+        "column": 1,
+        "inputValidationErrors": null
+      }, {
+        "value": 1563028.4264,
+        "format": "#,##0",
+        "column": 2,
+        "inputValidationErrors": null
+      }]
     }, {
-        "header": {
-            "code": "20SE",
-            "codeVector": null,
-            "description": "EQUITY",
-            "dimension": "Code",
-            "indentation": 0,
-            "span": 1,
-            "column": 0
-        },
-        "values": [{
-            "value": 1813820.6280999999,
-            "format": "#,##0",
-            "column": 1,
-            "inputValidationErrors": null
-        }, {
-            "value": 1498597.9113000007,
-            "format": "#,##0",
-            "column": 2,
-            "inputValidationErrors": null
-        }]
+      "header": {
+        "code": "20SE",
+        "codeVector": null,
+        "description": "EQUITY",
+        "dimension": "Code",
+        "indentation": 0,
+        "span": 1,
+        "column": 0
+      },
+      "values": [{
+        "value": 1813820.6280999999,
+        "format": "#,##0",
+        "column": 1,
+        "inputValidationErrors": null
+      }, {
+        "value": 1498597.9113000007,
+        "format": "#,##0",
+        "column": 2,
+        "inputValidationErrors": null
+      }]
     }, {
-        "header": {
-            "code": "2100",
-            "codeVector": null,
-            "description": "Minority interest",
-            "dimension": "Code",
-            "indentation": 0,
-            "span": 1,
-            "column": 0
-        },
-        "values": [{
-            "value": 81599.3391,
-            "format": "#,##0",
-            "column": 1,
-            "inputValidationErrors": null
-        }, {
-            "value": 84842.6517,
-            "format": "#,##0",
-            "column": 2,
-            "inputValidationErrors": null
-        }]
+      "header": {
+        "code": "2100",
+        "codeVector": null,
+        "description": "Minority interest",
+        "dimension": "Code",
+        "indentation": 0,
+        "span": 1,
+        "column": 0
+      },
+      "values": [{
+        "value": 81599.3391,
+        "format": "#,##0",
+        "column": 1,
+        "inputValidationErrors": null
+      }, {
+        "value": 84842.6517,
+        "format": "#,##0",
+        "column": 2,
+        "inputValidationErrors": null
+      }]
     }, {
-        "header": {
-            "code": "2199",
-            "codeVector": null,
-            "description": "Untaxed reserves",
-            "dimension": "Code",
-            "indentation": 0,
-            "span": 1,
-            "column": 0
-        },
-        "values": [{
-            "value": 0.0,
-            "format": "#,##0",
-            "column": 1,
-            "inputValidationErrors": null
-        }, {
-            "value": 0.0,
-            "format": "#,##0",
-            "column": 2,
-            "inputValidationErrors": null
-        }]
+      "header": {
+        "code": "2199",
+        "codeVector": null,
+        "description": "Untaxed reserves",
+        "dimension": "Code",
+        "indentation": 0,
+        "span": 1,
+        "column": 0
+      },
+      "values": [{
+        "value": 0.0,
+        "format": "#,##0",
+        "column": 1,
+        "inputValidationErrors": null
+      }, {
+        "value": 0.0,
+        "format": "#,##0",
+        "column": 2,
+        "inputValidationErrors": null
+      }]
     }, {
-        "header": {
-            "code": "2299",
-            "codeVector": null,
-            "description": "Provisions",
-            "dimension": "Code",
-            "indentation": 0,
-            "span": 1,
-            "column": 0
-        },
-        "values": [{
-            "value": 182568.1147,
-            "format": "#,##0",
-            "column": 1,
-            "inputValidationErrors": null
-        }, {
-            "value": 908241.5651000001,
-            "format": "#,##0",
-            "column": 2,
-            "inputValidationErrors": null
-        }]
+      "header": {
+        "code": "2299",
+        "codeVector": null,
+        "description": "Provisions",
+        "dimension": "Code",
+        "indentation": 0,
+        "span": 1,
+        "column": 0
+      },
+      "values": [{
+        "value": 182568.1147,
+        "format": "#,##0",
+        "column": 1,
+        "inputValidationErrors": null
+      }, {
+        "value": 908241.5651000001,
+        "format": "#,##0",
+        "column": 2,
+        "inputValidationErrors": null
+      }]
     }, {
-        "header": {
-            "code": "2399",
-            "codeVector": null,
-            "description": "Long-term liabilities",
-            "dimension": "Code",
-            "indentation": 0,
-            "span": 1,
-            "column": 0
-        },
-        "values": [{
-            "value": 303540.8893,
-            "format": "#,##0",
-            "column": 1,
-            "inputValidationErrors": null
-        }, {
-            "value": 2444254.8075,
-            "format": "#,##0",
-            "column": 2,
-            "inputValidationErrors": null
-        }]
+      "header": {
+        "code": "2399",
+        "codeVector": null,
+        "description": "Long-term liabilities",
+        "dimension": "Code",
+        "indentation": 0,
+        "span": 1,
+        "column": 0
+      },
+      "values": [{
+        "value": 303540.8893,
+        "format": "#,##0",
+        "column": 1,
+        "inputValidationErrors": null
+      }, {
+        "value": 2444254.8075,
+        "format": "#,##0",
+        "column": 2,
+        "inputValidationErrors": null
+      }]
     }, {
-        "header": {
-            "code": "2499",
-            "codeVector": null,
-            "description": "Current liabilities to cred inst, cust and suppl",
-            "dimension": "Code",
-            "indentation": 0,
-            "span": 1,
-            "column": 0
-        },
-        "values": [{
-            "value": 2244564.9480999997,
-            "format": "#,##0",
-            "column": 1,
-            "inputValidationErrors": null
-        }, {
-            "value": 1716403.7736000002,
-            "format": "#,##0",
-            "column": 2,
-            "inputValidationErrors": null
-        }]
+      "header": {
+        "code": "2499",
+        "codeVector": null,
+        "description": "Current liabilities to cred inst, cust and suppl",
+        "dimension": "Code",
+        "indentation": 0,
+        "span": 1,
+        "column": 0
+      },
+      "values": [{
+        "value": 2244564.9480999997,
+        "format": "#,##0",
+        "column": 1,
+        "inputValidationErrors": null
+      }, {
+        "value": 1716403.7736000002,
+        "format": "#,##0",
+        "column": 2,
+        "inputValidationErrors": null
+      }]
     }, {
-        "header": {
-            "code": "2599",
-            "codeVector": null,
-            "description": "Income tax liability",
-            "dimension": "Code",
-            "indentation": 0,
-            "span": 1,
-            "column": 0
-        },
-        "values": [{
-            "value": 223704.0,
-            "format": "#,##0",
-            "column": 1,
-            "inputValidationErrors": null
-        }, {
-            "value": 413639.15,
-            "format": "#,##0",
-            "column": 2,
-            "inputValidationErrors": null
-        }]
+      "header": {
+        "code": "2599",
+        "codeVector": null,
+        "description": "Income tax liability",
+        "dimension": "Code",
+        "indentation": 0,
+        "span": 1,
+        "column": 0
+      },
+      "values": [{
+        "value": 223704.0,
+        "format": "#,##0",
+        "column": 1,
+        "inputValidationErrors": null
+      }, {
+        "value": 413639.15,
+        "format": "#,##0",
+        "column": 2,
+        "inputValidationErrors": null
+      }]
     }, {
-        "header": {
-            "code": "2699",
-            "codeVector": null,
-            "description": "VAT and excise duty",
-            "dimension": "Code",
-            "indentation": 0,
-            "span": 1,
-            "column": 0
-        },
-        "values": []
+      "header": {
+        "code": "2699",
+        "codeVector": null,
+        "description": "VAT and excise duty",
+        "dimension": "Code",
+        "indentation": 0,
+        "span": 1,
+        "column": 0
+      },
+      "values": []
     }, {
-        "header": {
-            "code": "2799",
-            "codeVector": null,
-            "description": "Employee withholding taxes etc",
-            "dimension": "Code",
-            "indentation": 0,
-            "span": 1,
-            "column": 0
-        },
-        "values": [{
-            "value": 350510.5,
-            "format": "#,##0",
-            "column": 1,
-            "inputValidationErrors": null
-        }, {
-            "value": 359343.3,
-            "format": "#,##0",
-            "column": 2,
-            "inputValidationErrors": null
-        }]
+      "header": {
+        "code": "2799",
+        "codeVector": null,
+        "description": "Employee withholding taxes etc",
+        "dimension": "Code",
+        "indentation": 0,
+        "span": 1,
+        "column": 0
+      },
+      "values": [{
+        "value": 350510.5,
+        "format": "#,##0",
+        "column": 1,
+        "inputValidationErrors": null
+      }, {
+        "value": 359343.3,
+        "format": "#,##0",
+        "column": 2,
+        "inputValidationErrors": null
+      }]
     }, {
-        "header": {
-            "code": "2899",
-            "codeVector": null,
-            "description": "Other current liabilities",
-            "dimension": "Code",
-            "indentation": 0,
-            "span": 1,
-            "column": 0
-        },
-        "values": [{
-            "value": 2.2049037679999996E7,
-            "format": "#,##0",
-            "column": 1,
-            "inputValidationErrors": null
-        }, {
-            "value": 2.1874456019899998E7,
-            "format": "#,##0",
-            "column": 2,
-            "inputValidationErrors": null
-        }]
+      "header": {
+        "code": "2899",
+        "codeVector": null,
+        "description": "Other current liabilities",
+        "dimension": "Code",
+        "indentation": 0,
+        "span": 1,
+        "column": 0
+      },
+      "values": [{
+        "value": 2.2049037679999996E7,
+        "format": "#,##0",
+        "column": 1,
+        "inputValidationErrors": null
+      }, {
+        "value": 2.1874456019899998E7,
+        "format": "#,##0",
+        "column": 2,
+        "inputValidationErrors": null
+      }]
     }, {
-        "header": {
-            "code": "2999",
-            "codeVector": null,
-            "description": "Accrued expenses & deferred income",
-            "dimension": "Code",
-            "indentation": 0,
-            "span": 1,
-            "column": 0
-        },
-        "values": [{
-            "value": 1946796.4016999998,
-            "format": "#,##0",
-            "column": 1,
-            "inputValidationErrors": null
-        }, {
-            "value": 4076293.3749,
-            "format": "#,##0",
-            "column": 2,
-            "inputValidationErrors": null
-        }]
+      "header": {
+        "code": "2999",
+        "codeVector": null,
+        "description": "Accrued expenses & deferred income",
+        "dimension": "Code",
+        "indentation": 0,
+        "span": 1,
+        "column": 0
+      },
+      "values": [{
+        "value": 1946796.4016999998,
+        "format": "#,##0",
+        "column": 1,
+        "inputValidationErrors": null
+      }, {
+        "value": 4076293.3749,
+        "format": "#,##0",
+        "column": 2,
+        "inputValidationErrors": null
+      }]
     }, {
-        "header": {
-            "code": "2TLE",
-            "codeVector": null,
-            "description": "EQUITY AND LIABILITIES",
-            "dimension": "Code",
-            "indentation": 0,
-            "span": 1,
-            "column": 0
-        },
-        "values": [{
-            "value": 2.9196142500999987E7,
-            "format": "#,##0",
-            "column": 1,
-            "inputValidationErrors": null
-        }, {
-            "value": 3.3376072553999998E7,
-            "format": "#,##0",
-            "column": 2,
-            "inputValidationErrors": null
-        }]
+      "header": {
+        "code": "2TLE",
+        "codeVector": null,
+        "description": "EQUITY AND LIABILITIES",
+        "dimension": "Code",
+        "indentation": 0,
+        "span": 1,
+        "column": 0
+      },
+      "values": [{
+        "value": 2.9196142500999987E7,
+        "format": "#,##0",
+        "column": 1,
+        "inputValidationErrors": null
+      }, {
+        "value": 3.3376072553999998E7,
+        "format": "#,##0",
+        "column": 2,
+        "inputValidationErrors": null
+      }]
     }],
     "inputAvailability": {
-        "enabled": false,
-        "preValidation": null,
-        "rowSpec": null
+      "enabled": false,
+      "preValidation": null,
+      "rowSpec": null
     },
     "staticAxis": {
-        "criteria": [{
-            "dimension": "Currency",
-            "sort": "SelectionOrder",
-            "ascending": true,
-            "total": false,
-            "reportTotal": false,
-            "showCode": true,
-            "showDescription": false,
-            "exclude": false,
-            "selection": [{
-                "type": "Member",
-                "value": "TSEK",
-                "label": ""
-            }]
-        }, {
-            "dimension": "PeriodType",
-            "sort": "SelectionOrder",
-            "ascending": true,
-            "total": false,
-            "reportTotal": false,
-            "showCode": true,
-            "showDescription": false,
-            "exclude": false,
-            "selection": [{
-                "type": "Member",
-                "value": "Actual",
-                "label": ""
-            }]
-        }, {
-            "dimension": "PeriodIndex",
-            "sort": "SelectionOrder",
-            "ascending": true,
-            "total": false,
-            "reportTotal": false,
-            "showCode": true,
-            "showDescription": false,
-            "exclude": false,
-            "selection": [{
-                "type": "Member",
-                "value": "12",
-                "label": ""
-            }]
-        }],
-        "expand": [],
-        "topN": null,
-        "removeEmpty": true,
-        "compactLayout": false,
-        "expandPaths": [],
-        "collapsePaths": []
+      "criteria": [{
+        "dimension": "Currency",
+        "sort": "SelectionOrder",
+        "ascending": true,
+        "total": false,
+        "reportTotal": false,
+        "showCode": true,
+        "showDescription": false,
+        "exclude": false,
+        "selection": [{
+          "type": "Member",
+          "value": "TSEK",
+          "label": ""
+        }]
+      }, {
+        "dimension": "PeriodType",
+        "sort": "SelectionOrder",
+        "ascending": true,
+        "total": false,
+        "reportTotal": false,
+        "showCode": true,
+        "showDescription": false,
+        "exclude": false,
+        "selection": [{
+          "type": "Member",
+          "value": "Actual",
+          "label": ""
+        }]
+      }, {
+        "dimension": "PeriodIndex",
+        "sort": "SelectionOrder",
+        "ascending": true,
+        "total": false,
+        "reportTotal": false,
+        "showCode": true,
+        "showDescription": false,
+        "exclude": false,
+        "selection": [{
+          "type": "Member",
+          "value": "12",
+          "label": ""
+        }]
+      }],
+      "expand": [],
+      "topN": null,
+      "removeEmpty": true,
+      "compactLayout": false,
+      "expandPaths": [],
+      "collapsePaths": []
     }
-};
+  };
 
-let tableHeaders = "<tr class='table-dark'>";
-for (let header of data.headers[0]) {
-  tableHeaders += "<th>" + header.code + "</th>";
-}
-
-tableHeaders += "</tr>";
-let tableRows = "";
-for (let row of data.rows) {
-  tableRows += "<tr>";
-  tableRows += "<td>" + row.header.description + "</td>";
-  if (row.values.length === 0) {
-    // tableRows += "<td></td>";
-    console.log(data.headers[0].length)
-    for (let i = 1; i < data.headers[0].length; i++) {
-      tableRows += "<td></td>";
-    }
-  } else {
-    for (let value of row.values) {
-      tableRows += "<td>" + value.value.toFixed(2) + "</td>";
-    }
+  let tableHeaders = "<tr class='table-dark'>";
+  for (let header of data.headers[0]) {
+    tableHeaders += "<th>" + header.code + "</th>";
   }
-  tableRows += "</tr>";
+
+  tableHeaders += "</tr>";
+  let tableRows = "";
+  for (let row of data.rows) {
+    tableRows += "<tr>";
+    tableRows += "<td>" + row.header.description + "</td>";
+    if (row.values.length === 0) {
+      // tableRows += "<td></td>";
+      console.log(data.headers[0].length)
+      for (let i = 1; i < data.headers[0].length; i++) {
+        tableRows += "<td></td>";
+      }
+    } else {
+      for (let value of row.values) {
+        tableRows += "<td>" + value.value.toFixed(2) + "</td>";
+      }
+    }
+    tableRows += "</tr>";
+  }
+  let tableHTML = "<table class='table table-bordered table-condensed' style='border: 1px solid #ddd' id='tableTest'>" + tableHeaders + tableRows + "</table>";
+
+  // var resp = document.getElementById("jsonTable").innerHTML = tableHTML;
+  return tableHTML;
+
 }
-let tableHTML = "<table class='table table-bordered table-condensed' style='border: 1px solid #ddd' id='tableTest'>" + tableHeaders + tableRows + "</table>";
-
-// var resp = document.getElementById("jsonTable").innerHTML = tableHTML;
-return tableHTML;
-
-}
-
 
 
 function noteEight() {
+
   const data = {
     "headers": [
       [{
@@ -3141,37 +3141,94 @@ function noteEight() {
       "collapsePaths": []
     }
   };
+  
+  const tableData = [];
+  const columnIndex = {};
+  let currentColumn = 1;
 
-  let tableHeaders = "<tr class='table-dark'>";
-  for (let header of data.headers[0]) {
-    tableHeaders += "<th>" + header.code + "</th>";
-  }
-
-  tableHeaders += "</tr>";
-  let tableRows = "";
-  for (let row of data.rows) {
-    tableRows += "<tr>";
-    tableRows += "<td>" + row.header.description + "</td>";
-    if (row.values.length === 0) {
-      // tableRows += "<td></td>";
-      console.log(data.headers[0].length)
-      for (let i = 1; i < data.headers[0].length; i++) {
-        tableRows += "<td></td>";
+  // Build header row
+  data.headers.forEach((row) => {
+    const headerRow = new Array(data.headers[1].length + 1).fill('');
+    row.forEach((header) => {
+      const span = header.span || 1;
+      if (header.code) {
+        for (let i = 0; i < span; i++) {
+          headerRow[header.column - 1 + i] = header.description;
+        }
       }
-    } else {
-      for (let value of row.values) {
-        tableRows += "<td>" + value.value.toFixed(2) + "</td>";
+    });
+    tableData.push(headerRow);
+  });
+
+
+  // Add row data
+  data.rows.forEach((row) => {
+    const rowData = [row.header.description];
+    let currentColumn = 2;
+    Object.values(columnIndex).forEach((columnHeader) => {
+      if (columnHeader !== 'Group') {
+        rowData.push('');
       }
-    }
-    tableRows += "</tr>";
-  }
-  let tableHTML = "<table class='table table-bordered table-condensed' style='border: 1px solid #ddd' id='tableTest'>" + tableHeaders + tableRows + "</table>";
+    });
+    row.values.forEach((value) => {
+      const span = value.header ? value.header.span || 1 : 1;
+      for (let i = 0; i < span; i++) {
+        const columnHeader = columnIndex[currentColumn];
+        if (columnHeader !== undefined && columnHeader !== null && columnHeader !== 'Group') {
+          rowData[currentColumn - 1] = value.value.toFixed(2);
+        }
+        currentColumn++;
+      }
+    });
+    tableData.push(rowData);
+  });
 
-  // var resp = document.getElementById("jsonTable").innerHTML = tableHTML;
-  return tableHTML;
-
-
+  return tableData;
 }
+
+
+// function noteEight() {
+
+
+//   const tableData = [];
+
+//   // Build column index dictionary
+//   const columnIndex = {};
+//   console.log(data.headers)
+//   buildColumnIndex(data.headers, columnIndex);
+
+//   // Add headers to tableData
+//   const headerRow = buildHeaderRow(data.headers);
+//   tableData.push(headerRow);
+
+//   // Add rows to tableData
+//   data.rows.forEach((row) => {
+//     const rowData = [row.header.description];
+//     if (row.values.length === 0) {
+//       // If row has no values, add empty cells
+//       for (let i = 1; i < headerRow.length; i++) {
+//         rowData.push('');
+//       }
+//     } else {
+//       // Add values to corresponding columns
+//       let currentIndex = 0;
+//       row.values.forEach((value) => {
+//         const span = value.header ? value.header.span || 1 : 1;
+//         for (let i = 0; i < span; i++) {
+//           const columnIndexValue = columnIndex[currentIndex];
+//           if (columnIndexValue !== undefined && columnIndexValue !== null) {
+//             rowData[columnIndexValue] = value.value.toFixed(2);
+//           }
+//           currentIndex++;
+//         }
+//       });
+//     }
+//     tableData.push(rowData);
+//   });
+
+//   return tableData;
+// }
+
 
 function get_data() {
 
@@ -3478,35 +3535,54 @@ function get_data() {
     }
   };
 
-  let tableHeaders = "<tr class='table-dark'>";
-  for (let header of data.headers[0]) {
-    tableHeaders += "<th>" + header.code + "</th>";
-  }
+  // let tableHeaders = "<tr class='table-dark'>";
+  // for (let header of data.headers[0]) {
+  //   tableHeaders += "<th>" + header.code + "</th>";
+  // }
 
-  tableHeaders += "</tr>";
-  let tableRows = "";
+  // tableHeaders += "</tr>";
+  // let tableRows = "";
+  // for (let row of data.rows) {
+  //   tableRows += "<tr>";
+  //   tableRows += "<td>" + row.header.description + "</td>";
+  //   if (row.values.length === 0) {
+  //     // tableRows += "<td></td>";
+  //     console.log(data.headers[0].length)
+  //     for (let i = 1; i < data.headers[0].length; i++) {
+  //       tableRows += "<td></td>";
+  //     }
+  //   } else {
+  //     for (let value of row.values) {
+  //       tableRows += "<td>" + value.value.toFixed(2) + "</td>";
+  //     }
+  //   }
+  //   tableRows += "</tr>";
+  // }
+  // let tableHTML = "<table class='table table-bordered table-condensed' style='border: 1px solid #ddd' id='tableTest'>" + tableHeaders + tableRows + "</table>";
+
+  // var resp = document.getElementById("jsonTable").innerHTML = tableHTML;
+
+
+  const tableData = [];
+  tableData.push(data.headers[0].map(header => header.code));
+
   for (let row of data.rows) {
-    tableRows += "<tr>";
-    tableRows += "<td>" + row.header.description + "</td>";
+    const rowData = [row.header.description];
     if (row.values.length === 0) {
-      // tableRows += "<td></td>";
-      console.log(data.headers[0].length)
       for (let i = 1; i < data.headers[0].length; i++) {
-        tableRows += "<td></td>";
+        rowData.push("");
       }
     } else {
       for (let value of row.values) {
-        tableRows += "<td>" + value.value.toFixed(2) + "</td>";
+        rowData.push(value.value.toFixed(2));
       }
     }
-    tableRows += "</tr>";
+    tableData.push(rowData);
   }
-  let tableHTML = "<table class='table table-bordered table-condensed' style='border: 1px solid #ddd' id='tableTest'>" + tableHeaders + tableRows + "</table>";
 
-  // var resp = document.getElementById("jsonTable").innerHTML = tableHTML;
-  return tableHTML;
-
+  return tableData;
 }
+
 
 export async function run() {
   return Word.run(async (context) => {
@@ -3585,9 +3661,6 @@ export async function run() {
     });
   });
 }
-
-
-
 
 export async function noteEightProcess() {
   return Word.run(async (context) => {
@@ -3747,6 +3820,40 @@ export async function consolidatedBalanceProcess() {
 }
 
 
+async function insertTable() {
+  const data = get_data();
+
+  await Word.run(async (context) => {
+    const table = context.document.body.insertTable(data.length, data[0].length, "Start", data);
+    table.styleBuiltIn = Word.Style.gridTable5Dark_Accent2;
+    table.styleFirstColumn = false;
+
+    await context.sync();
+  });
+}
+
+
+async function insertTableNoteEightProcess() {
+  const data = noteEight();
+
+  await Word.run(async (context) => {
+    const table = context.document.body.insertTable(data.length, data[0].length, "Start", data);
+    table.styleBuiltIn = Word.Style.gridTgridTable5Dark_Accent2able1Light;
+    table.styleFirstColumn = false;
+
+    context.document.sections.load("pageSetup");
+
+    await context.sync();
+    const section = context.document.sections.getFirstOrNullObject();
+    if (section) {
+      section.pageSetup.orientation = Word.Orientation.landscape;
+    }
+
+    await context.sync();
+  });
+}
+
+
 //
 //
 //
@@ -3788,49 +3895,49 @@ async function submitForm() {
   }
 }
 
-async function insertTextIntoDocument(data) {
-  return Word.run(async (context) => {
-    const headers = data.headers[0];
-    const rows = data.rows;
-    // Create the table
-    const table = context.document.body.insertTable(rows.length + 1, headers.length, Word.InsertLocation.end);
+// async function insertTextIntoDocument(data) {
+//   return Word.run(async (context) => {
+//     const headers = data.headers[0];
+//     const rows = data.rows;
+//     // Create the table
+//     const table = context.document.body.insertTable(rows.length + 1, headers.length, Word.InsertLocation.end);
 
-    // Insert the headers
-    const cells = table.tableRows.getFirst().getCells();
-    for (let i = 0; i < headers.length; i++) {
-      cells.items[i].insertText(headers[i].description, Word.InsertLocation.end);
-    }
+//     // Insert the headers
+//     const cells = table.tableRows.getFirst().getCells();
+//     for (let i = 0; i < headers.length; i++) {
+//       cells.items[i].insertText(headers[i].description, Word.InsertLocation.end);
+//     }
 
-    // Insert the data rows
-    for (let i = 0; i < rows.length; i++) {
-      const row = rows[i];
-      const newRow = table.insertRow(Word.InsertLocation.end);
-      const newCells = newRow.getCells();
+//     // Insert the data rows
+//     for (let i = 0; i < rows.length; i++) {
+//       const row = rows[i];
+//       const newRow = table.insertRow(Word.InsertLocation.end);
+//       const newCells = newRow.getCells();
 
-      for (let j = 0; j < row.values.length; j++) {
-        newCells.items[j].insertText(row.values[j].value.toString(), Word.InsertLocation.end);
-      }
-    }
+//       for (let j = 0; j < row.values.length; j++) {
+//         newCells.items[j].insertText(row.values[j].value.toString(), Word.InsertLocation.end);
+//       }
+//     }
 
-    // Select the table and insert it into the document
-    table.select();
-    const tableElement = table.getHtml();
-    Office.context.document.setSelectedDataAsync(
-      tableElement, {
-        coercionType: Office.CoercionType.Table,
-      },
-      function (asyncResult) {
-        if (asyncResult.status === Office.AsyncResultStatus.Failed) {
-          console.error(asyncResult.error.message);
-        } else {
-          console.log("Table inserted successfully");
-        }
-      }
-    );
+//     // Select the table and insert it into the document
+//     table.select();
+//     const tableElement = table.getHtml();
+//     Office.context.document.setSelectedDataAsync(
+//       tableElement, {
+//         coercionType: Office.CoercionType.Table,
+//       },
+//       function (asyncResult) {
+//         if (asyncResult.status === Office.AsyncResultStatus.Failed) {
+//           console.error(asyncResult.error.message);
+//         } else {
+//           console.log("Table inserted successfully");
+//         }
+//       }
+//     );
 
-    await context.sync();
-  });
-}
+//     await context.sync();
+//   });
+// }
 
 // async function insertTextIntoDocument(data) {
 //   return Word.run(async (context) => {
