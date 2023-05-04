@@ -12,12 +12,56 @@ Office.onReady((info) => {
     document.getElementById("noteThree").onclick = insertTable;
 
     document.getElementById("consolidatedBalance").onclick = consolidatedBalanceProcess;
-    
+
     document.getElementById("noteEight").onclick = insertTableNoteEightProcess;
+    document.getElementById("PotraitNoteEight").onclick = changePageOrientationToPotrait;
+    document.getElementById("LandscapeNoteEight").onclick = changePageOrientationToLandscape;
 
 
   }
 });
+
+async function changePageOrientationToLandscape() {
+  await Word.run(async (context) => {
+    const sections = context.document.sections;
+    sections.load("items");
+
+    // Synchronize with the document
+    await context.sync();
+
+    // Load the pageSetup property for each section and change the orientation to landscape
+    for (const section of sections.items) {
+      section.load("pageSetup");
+
+      await context.sync();
+      section.pageSetup.orientation = 'landscape';
+    }
+
+    // Synchronize the changes
+    await context.sync();
+  });
+}
+
+
+async function changePageOrientationToPotrait() {
+  await Word.run(async (context) => {
+    // Load the sections and pageSetup
+    const sections = context.document.sections;
+    sections.load("pageSetup");
+
+    // Synchronize with the document
+    await context.sync();
+
+    // Change the orientation of each section to landscape
+    for (const section of sections.items) {
+      section.pageSetup.orientation = Word.Orientation.portrait;
+    }
+
+    // Synchronize the changes
+    await context.sync();
+  });
+}
+
 
 // function getCss() {
 
@@ -3141,7 +3185,7 @@ function noteEight() {
       "collapsePaths": []
     }
   };
-  
+
   const tableData = [];
   const columnIndex = {};
   let currentColumn = 1;
@@ -3574,8 +3618,14 @@ function get_data() {
       }
     } else {
       for (let value of row.values) {
-        rowData.push(value.value.toFixed(2));
+
+        let val = value.value.toLocaleString(undefined, {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        })
+        rowData.push(val);
       }
+      
     }
     tableData.push(rowData);
   }
@@ -3825,9 +3875,29 @@ async function insertTable() {
 
   await Word.run(async (context) => {
     const table = context.document.body.insertTable(data.length, data[0].length, "Start", data);
-    table.styleBuiltIn = Word.Style.gridTable5Dark_Accent2;
-    table.styleFirstColumn = false;
+    table.styleBuiltIn = Word.Style.gridTable4_Accent2;
+    
+    table.rows.load("items");
+    await context.sync();
 
+    // Iterate through the table rows and cells, changing the font color to black
+    // and aligning the second and third columns to the right
+    for (const row of table.rows.items) {
+      row.cells.load("items");
+      await context.sync();
+
+      for (const [index, cell] of row.cells.items.entries()) {
+        
+        if (index != 0) { // Check if it's the second or third column
+          cell.horizontalAlignment = Word.Alignment.left; // Align to the right
+        }
+      }
+    }
+
+    // Synchronize the changes
+    await context.sync();
+
+    // Synchronize the changes
     await context.sync();
   });
 }
@@ -3838,29 +3908,13 @@ async function insertTableNoteEightProcess() {
 
   await Word.run(async (context) => {
     const table = context.document.body.insertTable(data.length, data[0].length, "Start", data);
-    table.styleBuiltIn = Word.Style.gridTgridTable5Dark_Accent2able1Light;
-    table.styleFirstColumn = false;
-
-    context.document.sections.load("pageSetup");
-
-    await context.sync();
-    const section = context.document.sections.getFirstOrNullObject();
-    if (section) {
-      section.pageSetup.orientation = Word.Orientation.landscape;
-    }
+    table.styleBuiltIn = Word.Style.gridTable2_Accent3;
+    // table.styleFirstColumn = false;
 
     await context.sync();
   });
 }
 
-
-//
-//
-//
-//
-//
-//
-//
 
 Office.onReady((info) => {
   if (info.host === Office.HostType.Word) {
