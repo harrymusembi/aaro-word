@@ -23,13 +23,15 @@
     rel="stylesheet" type="text/css" />
 
   <!-- Icons -->
-  <link rel="stylesheet" type="text/css" href="./../../assets/vendor/fonts/fontawesome.css" />
-  <link rel="stylesheet" type="text/css" href="./../../assets/vendor/fonts/tabler-icons.css" />
-  <link rel="stylesheet" type="text/css" href="./../../assets/vendor/fonts/flag-icons.css" />
+  <!-- <link rel="stylesheet" type="text/css" href="./../../assets/fontawesome.css" />
+  <link rel="stylesheet" type="text/css" href="./../../assets/tabler-icons.css" />
+  <link rel="stylesheet" type="text/css" href="./../../assets/flag-icons.css" /> -->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
   <!-- Core CSS -->
   <link rel="stylesheet" type="text/css" href="./../../assets/vendor/css/rtl/core.css" />
-  <link rel="stylesheet" type="text/css" href="./../../assets/vendor/css/rtl/theme-default.css" />
+  <link rel="stylesheet" type="text/css" href="./../../assets/vendor/css/rtl/theme-semi-dark.css" />
   <link rel="stylesheet" type="text/css" href="./../../assets/css/demo.css" />
 
   <!-- Vendors CSS -->
@@ -52,7 +54,13 @@
   <!-- For more information on Fluent UI, visit https://developer.microsoft.com/fluentui#/. -->
   <link rel="stylesheet" type="text/css"
     href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/11.0.0/css/fabric.min.css" />
-
+  <style>
+    .bg-menu-theme.menu-vertical .menu-item.active>.menu-link:not(.menu-toggle) {
+      background: #005396 !important;
+      box-shadow: 0px 2px 6px 0px rgba(42, 30, 179, 0.48);
+      color: #fff !important;
+    }
+  </style>
 </head>
 
 <body>
@@ -67,22 +75,19 @@
         <div class="app-brand demo">
           <a href="index.html" class="app-brand-link">
             <span class="app-brand-logo demo">
-              <img src="./../../assets/img/branding/aaro-logo.png" alt="" width="40px" height="20px">
-
+              <img src="./../../assets/img/branding/aaro-logo-80.png" alt="" width="40px" height="20px">
             </span>
             <span class="app-brand-text demo menu-text fw-bold">AARO SYSTEMS</span>
           </a>
-
-
         </div>
 
-        <div class="menu-inner-shadow"></div>
+        <!-- <div class="menu-inner-shadow"></div> -->
 
         <ul class="menu-inner py-1">
           <!-- Dashboards -->
-          <li class="menu-item active open">
-            <a href="taskpane.html" class="menu-link">
-              <i class="menu-icon tf-icons ti ti-smart-home"></i>
+          <li class="menu-item">
+            <a href="index.html" class="menu-link">
+              <i class="menu-icon fas fa-home"></i>
               <div data-i18n="Dashboards">Templates</div>
               <!-- <div class="badge bg-label-primary rounded-pill ms-auto">3</div> -->
             </a>
@@ -91,15 +96,15 @@
           <!-- Layouts -->
           <li class="menu-item">
             <a href="templates.html" class="menu-link">
-              <i class="menu-icon tf-icons ti ti-layout-sidebar"></i>
+              <i class="menu-icon fas fa-file-alt"></i>
               <div data-i18n="Layouts">Reports</div>
             </a>
 
           </li>
 
-          <li class="menu-item">
+          <li class="menu-item active">
             <a href="uploads.html" class="menu-link">
-              <i class="menu-icon tf-icons ti ti-layout-sidebar"></i>
+              <i class="menu-icon fas fa-file-upload"></i>
               <div data-i18n="Layouts">Upload</div>
             </a>
 
@@ -119,7 +124,7 @@
           id="layout-navbar">
           <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
             <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
-              <i class="ti ti-menu-2 ti-sm"></i>
+              <i class="fas fa-bars"></i>
             </a>
           </div>
 
@@ -150,7 +155,7 @@
                           </div>
                         </div>
                         <div class="flex-grow-1">
-                          <span class="fw-semibold d-block">John Doe</span>
+                          <span class="fw-semibold d-block" id="username"></span>
                           <small class="text-muted">Admin</small>
                         </div>
                       </div>
@@ -161,13 +166,13 @@
                   </li>
                   <li>
                     <a class="dropdown-item" href="pages-profile-user.html">
-                      <i class="ti ti-user-check me-2 ti-sm"></i>
+                      <i class="fas fa-user-check"></i>
                       <span class="align-middle">My Profile</span>
                     </a>
                   </li>
                   <li>
                     <a class="dropdown-item" href="pages-account-settings-account.html">
-                      <i class="ti ti-settings me-2 ti-sm"></i>
+                      <i class="fas fa-cog"></i>
                       <span class="align-middle">Settings</span>
                     </a>
                   </li>
@@ -176,13 +181,14 @@
               </li>
               <li>
                 <a class="dropdown-item" href="pages-help-center-landing.html">
-                  <i class="ti ti-lifebuoy me-2 ti-sm"></i>
+                  <i class="fas fa-life-ring"></i>
                   <span class="align-middle">Help</span>
                 </a>
               </li>
               <li>
                 <a class="dropdown-item" href="pages-faq.html">
-                  <i class="ti ti-help me-2 ti-sm"></i>
+                  <!-- <i class="fas fa-circle-question"></i> -->
+                  <i class="fas fa-circle-question"></i>
                   <span class="align-middle">FAQ</span>
                 </a>
               </li>
@@ -191,8 +197,8 @@
                 <div class="dropdown-divider"></div>
               </li>
               <li>
-                <a class="dropdown-item" href="auth-login-cover.html" target="_blank">
-                  <i class="ti ti-logout me-2 ti-sm"></i>
+                <a class="dropdown-item" id="logoutButton">
+                  <i class="fas fa-right-from-bracket"></i>
                   <span class="align-middle">Log Out</span>
                 </a>
               </li>
@@ -217,10 +223,10 @@
           <!-- Content -->
 
           <div class="container-xxl flex-grow-1 container-p-y">
-            <div class="row">
-              <!-- Website Analytics -->
+            <!-- <div class="row">
+               Website Analytics -->
               <!-- Sales Overview -->
-              <div class="col-lg-12 col-sm-12 mb-4 ">
+              <!-- <div class="col-lg-12 col-sm-12 mb-4 ">
                 <div class="card hidden" id="tableTest">
                   <h5 class="card-header">Templates</h5>
                   <div class="table-responsive text-nowrap" id="Table1">
@@ -255,7 +261,7 @@
                     </table>
                   </div>
                 </div>
-              </div>
+              </div> -->
               <!--/ Sales Overview -->
 
               <!-- <div class="col-xl-4 mb-4 col-lg-5 col-12">
@@ -308,6 +314,25 @@
               </div> -->
 
               <!--/ Projects table -->
+            <!-- </div>  -->
+
+            <div class="row">
+              <div class="col-xl-12">
+                <!-- HTML5 Inputs -->
+               
+
+                <!-- File input -->
+                <div class="card">
+                  <h5 class="card-header">Json Template Upload</h5>
+                  <div class="card-body">
+                    <div class="mb-3">
+                      <label for="formFile" class="form-label">Upload a json Template</label>
+                      <input class="form-control" type="file" id="formFile" accept=".json" />
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <!-- / Content -->

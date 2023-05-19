@@ -5,8 +5,11 @@
  * See LICENSE in the project root for license information.
  */
 
+// import { exit } from "process";
+
 /* global document, Office, Word */
 
+// eslint-disable-next-line office-addins/no-office-initialize
 Office.onReady((info) => {
   if (info.host === Office.HostType.Word) {
     document.getElementById("noteThree").onclick = insertTable;
@@ -3873,9 +3876,13 @@ export async function consolidatedBalanceProcess() {
 async function insertTable() {
   const data = get_data();
 
+  var table_style = document.getElementById("select2Icons").val;
+
+  console.log(table_style)
+
   await Word.run(async (context) => {
     const table = context.document.body.insertTable(data.length, data[0].length, "Start", data);
-    table.styleBuiltIn = Word.Style.gridTable4_Accent2;
+    table.styleBuiltIn = Word.Style.gridTable4_Accent5;
     
     table.rows.load("items");
     await context.sync();
@@ -3887,9 +3894,13 @@ async function insertTable() {
       await context.sync();
 
       for (const [index, cell] of row.cells.items.entries()) {
-        
-        if (index != 0) { // Check if it's the second or third column
-          cell.horizontalAlignment = Word.Alignment.left; // Align to the right
+        cell.load("font");
+        await context.sync();
+
+        cell.font.color = 'black'; // Set the font color to black
+
+        if (index === 1 || index === 2) { // Check if it's the second or third column
+          cell.horizontalAlignment = Word.Alignment.right; // Align to the right
         }
       }
     }
