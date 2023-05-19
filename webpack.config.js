@@ -18,14 +18,17 @@ module.exports = async (env, options) => {
     devtool: "source-map",
     entry: {
       polyfill: ["core-js/stable", "regenerator-runtime/runtime"],
-      taskpane: ["./src/taskpane/taskpane.js", "./src/taskpane/taskpane.html"],
+      taskpane: "./src/taskpane/taskpane.html",
       commands: "./src/commands/commands.js",
+      templates: "./src/taskpane/templates.html",
+      uploads: "./src/taskpane/uploads.html",
+      index: ["./src/taskpane/index.js", "./src/taskpane/index.html"],
     },
     output: {
       clean: true,
     },
     resolve: {
-      extensions: [".html", ".js"],
+      extensions: [".html", ".js", ".css"],
     },
     module: {
       rules: [
@@ -51,6 +54,13 @@ module.exports = async (env, options) => {
             filename: "assets/[name][ext][query]",
           },
         },
+        {
+          test: /\.(woff|woff2|ttf|eot|svg)$/,
+          type: "asset/resource",
+          generator: {
+            filename: "assets/[name][ext][query]",
+          },
+        },
       ],
     },
     plugins: [
@@ -59,10 +69,29 @@ module.exports = async (env, options) => {
         template: "./src/taskpane/taskpane.html",
         chunks: ["polyfill", "taskpane"],
       }),
+      new HtmlWebpackPlugin({
+        filename: "templates.html",
+        template: "./src/taskpane/templates.html",
+        chunks: ["polyfill", "templates"],
+      }),
+      new HtmlWebpackPlugin({
+        filename: "uploads.html",
+        template: "./src/taskpane/uploads.html",
+        chunks: ["polyfill", "uploads"],
+      }),
+      new HtmlWebpackPlugin({
+        filename: "index.html",
+        template: "./src/taskpane/index.html",
+        chunks: ["polyfill", "index"],
+      }),
       new CopyWebpackPlugin({
         patterns: [
           {
             from: "assets/img/icons/aaro/*",
+            to: "assets/[name][ext][query]",
+          },
+          {
+            from: "assets/*",
             to: "assets/[name][ext][query]",
           },
           {
