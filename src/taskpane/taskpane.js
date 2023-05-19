@@ -875,7 +875,7 @@ function consolidatedBalance() {
       "expandPaths": [],
       "collapsePaths": []
     }
-  };
+  }; 
 
   let tableHeaders = "<tr class='table-dark'>";
   for (let header of data.headers[0]) {
