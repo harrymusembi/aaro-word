@@ -20,10 +20,18 @@ Office.onReady((info) => {
     document.getElementById("PotraitNoteEight").onclick = changePageOrientationToPotrait;
     document.getElementById("LandscapeNoteEight").onclick = changePageOrientationToLandscape;
 
+    const tableStylesDropdown = document.getElementById("tableStylesDropdown");
+
+    tableStylesDropdown.addEventListener("change", () => {
+      const selectedStyle = tableStylesDropdown.value;
+      insertTable(selectedStyle);
+      // console.log(selectedStyle);
+      //modifyTableStyle(selectedStyle);
+    });
 
   }
 });
-
+ 
 async function changePageOrientationToLandscape() {
   await Word.run(async (context) => {
     const sections = context.document.sections;
@@ -65,31 +73,6 @@ async function changePageOrientationToPotrait() {
   });
 }
 
-
-// function getCss() {
-
-//   const cssParser = require('css-parser');
-//   // const fs = require('fs');
-
-//   const cssUrl = document.querySelector('link[rel="stylesheet"]').href;
-//   console.log(cssUrl);
-//   fetch(cssUrl)
-//     .then(res => res.text())
-//     .then(css => {
-//       const parsedCss = cssParser(css);
-//       const cssRules = parsedCss.stylesheet.rules;
-
-//       // Print out each CSS rule
-//       for (const rule of cssRules) {
-//         console.log(rule.selector);
-//         for (const declaration of rule.declarations) {
-//           console.log(`  ${declaration.property}: ${declaration.value};`);
-//         }
-//       }
-//     })
-//     .catch(err => console.error(err));
-
-// }
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function consolidatedBalance() {
 
@@ -895,7 +878,7 @@ function consolidatedBalance() {
       "expandPaths": [],
       "collapsePaths": []
     }
-  };
+  }; 
 
   let tableHeaders = "<tr class='table-dark'>";
   for (let header of data.headers[0]) {
@@ -3234,47 +3217,6 @@ function noteEight() {
 }
 
 
-// function noteEight() {
-
-
-//   const tableData = [];
-
-//   // Build column index dictionary
-//   const columnIndex = {};
-//   console.log(data.headers)
-//   buildColumnIndex(data.headers, columnIndex);
-
-//   // Add headers to tableData
-//   const headerRow = buildHeaderRow(data.headers);
-//   tableData.push(headerRow);
-
-//   // Add rows to tableData
-//   data.rows.forEach((row) => {
-//     const rowData = [row.header.description];
-//     if (row.values.length === 0) {
-//       // If row has no values, add empty cells
-//       for (let i = 1; i < headerRow.length; i++) {
-//         rowData.push('');
-//       }
-//     } else {
-//       // Add values to corresponding columns
-//       let currentIndex = 0;
-//       row.values.forEach((value) => {
-//         const span = value.header ? value.header.span || 1 : 1;
-//         for (let i = 0; i < span; i++) {
-//           const columnIndexValue = columnIndex[currentIndex];
-//           if (columnIndexValue !== undefined && columnIndexValue !== null) {
-//             rowData[columnIndexValue] = value.value.toFixed(2);
-//           }
-//           currentIndex++;
-//         }
-//       });
-//     }
-//     tableData.push(rowData);
-//   });
-
-//   return tableData;
-// }
 
 
 function get_data() {
@@ -3582,32 +3524,6 @@ function get_data() {
     }
   };
 
-  // let tableHeaders = "<tr class='table-dark'>";
-  // for (let header of data.headers[0]) {
-  //   tableHeaders += "<th>" + header.code + "</th>";
-  // }
-
-  // tableHeaders += "</tr>";
-  // let tableRows = "";
-  // for (let row of data.rows) {
-  //   tableRows += "<tr>";
-  //   tableRows += "<td>" + row.header.description + "</td>";
-  //   if (row.values.length === 0) {
-  //     // tableRows += "<td></td>";
-  //     console.log(data.headers[0].length)
-  //     for (let i = 1; i < data.headers[0].length; i++) {
-  //       tableRows += "<td></td>";
-  //     }
-  //   } else {
-  //     for (let value of row.values) {
-  //       tableRows += "<td>" + value.value.toFixed(2) + "</td>";
-  //     }
-  //   }
-  //   tableRows += "</tr>";
-  // }
-  // let tableHTML = "<table class='table table-bordered table-condensed' style='border: 1px solid #ddd' id='tableTest'>" + tableHeaders + tableRows + "</table>";
-
-  // var resp = document.getElementById("jsonTable").innerHTML = tableHTML;
 
 
   const tableData = [];
@@ -3689,24 +3605,6 @@ export async function run() {
     range.insertHtml(htmldata, "End");
 
 
-    // console.log(table)
-    // // Set cell borders
-    // table.style.borderCollapse = "collapse";
-    // const cells = table.getElementsByTagName("td");
-    // for (let i = 0; i < cells.length; i++) {
-    //   cells[i].style.border = "1px solid #ddd";
-    // }
-
-    // // Set cell shading
-    // const rows = table.getElementsByTagName("tr");
-    // for (let i = 0; i < rows.length; i++) {
-    //   const cells = rows[i].getElementsByTagName("td");
-    //   for (let j = 0; j < cells.length; j++) {
-    //     cells[j].style.backgroundColor = "#f2f2f2";
-    //   }
-    // }
-
-
 
     // Execute the queued commands and return a promise
     return context.sync().then(function () {
@@ -3766,23 +3664,6 @@ export async function noteEightProcess() {
     const range = context.document.body;
     range.insertHtml(htmldata, "End");
 
-
-    // console.log(table)
-    // // Set cell borders
-    // table.style.borderCollapse = "collapse";
-    // const cells = table.getElementsByTagName("td");
-    // for (let i = 0; i < cells.length; i++) {
-    //   cells[i].style.border = "1px solid #ddd";
-    // }
-
-    // // Set cell shading
-    // const rows = table.getElementsByTagName("tr");
-    // for (let i = 0; i < rows.length; i++) {
-    //   const cells = rows[i].getElementsByTagName("td");
-    //   for (let j = 0; j < cells.length; j++) {
-    //     cells[j].style.backgroundColor = "#f2f2f2";
-    //   }
-    // }
 
 
 
@@ -3845,26 +3726,6 @@ export async function consolidatedBalanceProcess() {
     const range = context.document.body;
     range.insertHtml(htmldata, "End");
 
-
-    // console.log(table)
-    // // Set cell borders
-    // table.style.borderCollapse = "collapse";
-    // const cells = table.getElementsByTagName("td");
-    // for (let i = 0; i < cells.length; i++) {
-    //   cells[i].style.border = "1px solid #ddd";
-    // }
-
-    // // Set cell shading
-    // const rows = table.getElementsByTagName("tr");
-    // for (let i = 0; i < rows.length; i++) {
-    //   const cells = rows[i].getElementsByTagName("td");
-    //   for (let j = 0; j < cells.length; j++) {
-    //     cells[j].style.backgroundColor = "#f2f2f2";
-    //   }
-    // }
-
-
-
     // Execute the queued commands and return a promise
     return context.sync().then(function () {
       console.log("HTML added successfully.");
@@ -3872,8 +3733,31 @@ export async function consolidatedBalanceProcess() {
   });
 }
 
+async function modifyTableStyle(selectedStyle) {
+  //console.log(selectedStyle);
+  await Word.run(async (context) => {
+    const tables = context.document.tables;
+    if (tables) {
+      tables.load("items");
+      await context.sync();
+      // Iterate through all the tables in the document
+      for (const table of tables.items) {
+        // Check if the current table is selected
+        if (table.isSelected) {
+          table.styleBuiltIn = selectedStyle;
+          await context.sync();
+          break; // Exit the loop since we've found and modified the selected table
+        }
+      }
+    } else {
+      console.log("No tables found in the document");
+      console.log(context.document.body.getHtml());
 
-async function insertTable() {
+    }
+  });
+}
+
+async function insertTable(selectedStyle) {
   const data = get_data();
 
   var table_style = document.getElementById("select2Icons").val;
@@ -3959,131 +3843,3 @@ async function submitForm() {
     await insertTextIntoDocument(data);
   }
 }
-
-// async function insertTextIntoDocument(data) {
-//   return Word.run(async (context) => {
-//     const headers = data.headers[0];
-//     const rows = data.rows;
-//     // Create the table
-//     const table = context.document.body.insertTable(rows.length + 1, headers.length, Word.InsertLocation.end);
-
-//     // Insert the headers
-//     const cells = table.tableRows.getFirst().getCells();
-//     for (let i = 0; i < headers.length; i++) {
-//       cells.items[i].insertText(headers[i].description, Word.InsertLocation.end);
-//     }
-
-//     // Insert the data rows
-//     for (let i = 0; i < rows.length; i++) {
-//       const row = rows[i];
-//       const newRow = table.insertRow(Word.InsertLocation.end);
-//       const newCells = newRow.getCells();
-
-//       for (let j = 0; j < row.values.length; j++) {
-//         newCells.items[j].insertText(row.values[j].value.toString(), Word.InsertLocation.end);
-//       }
-//     }
-
-//     // Select the table and insert it into the document
-//     table.select();
-//     const tableElement = table.getHtml();
-//     Office.context.document.setSelectedDataAsync(
-//       tableElement, {
-//         coercionType: Office.CoercionType.Table,
-//       },
-//       function (asyncResult) {
-//         if (asyncResult.status === Office.AsyncResultStatus.Failed) {
-//           console.error(asyncResult.error.message);
-//         } else {
-//           console.log("Table inserted successfully");
-//         }
-//       }
-//     );
-
-//     await context.sync();
-//   });
-// }
-
-// async function insertTextIntoDocument(data) {
-//   return Word.run(async (context) => {
-//     const headers = data.headers[0];
-//     const rows = data.rows;
-
-//     // Insert the table at the end of the document
-//     const table = context.document.body.insertTable(rows.length + 1, headers.length, Word.InsertLocation.end);
-
-//     // Insert the header row
-//     const headerRow = table.headerRow;
-//     for (let i = 0; i < headers.length; i++) {
-//       headerRow.getRange().getTableCells()[i].insertText(headers[i].description, Word.InsertLocation.end);
-//     }
-
-//     // Insert the data rows
-//     for (let i = 0; i < rows.length; i++) {
-//       const rowValues = rows[i].values;
-//       const row = table.insertRow(Word.InsertLocation.end);
-//       for (let j = 0; j < rowValues.length; j++) {
-//         row.getRange().getTableCells()[j].insertText(rowValues[j].value.toString(), Word.InsertLocation.end);
-//       }
-//     }
-
-//     await context.sync();
-//     console.log("Table inserted successfully");
-//   });
-// }
-
-// async function insertTextIntoDocument(data) {
-//   return Word.run(async (context) => {
-//     const headers = data.headers[0];
-//     const rows = data.rows;
-//     const table = context.document.body.insertTable(rows.length + 1, headers.length, Word.InsertLocation.end);
-//     const cells = table.tableRows.getFirst().getCells();
-
-//     for (let i = 0; i < headers.length; i++) {
-//       cells.items[i].insertText(headers[i].description, Word.InsertLocation.end);
-//     }
-
-//     for (let i = 0; i < rows.length; i++) {
-//       const row = rows[i];
-//       const newRow = table.insertRow(Word.InsertLocation.end);
-//       const newCells = newRow.getCells();
-
-//       newCells.items[0].insertText(row.header.description, Word.InsertLocation.end);
-
-//       for (let j = 0; j < row.values.length; j++) {
-//         newCells.items[j + 1].insertText(row.values[j].value.toString(), Word.InsertLocation.end);
-//       }
-//     }
-
-//     await context.sync();
-//     console.log("Table inserted successfully");
-//   });
-// }
-
-// async function insertTextIntoDocument(data) {
-//   return Word.run(async (context) => {
-//     const headers = data.headers[0];
-//     const rows = data.rows;
-//     const table = context.document.body.insertTable(rows.length + 1, headers.length, Word.InsertLocation.end);
-//     const cells = table.tableRows.getFirst().getCells();
-
-//     for (let i = 0; i < headers.length; i++) {
-//       cells.items[i].insertText(headers[i].description, Word.InsertLocation.end);
-//     }
-
-//     for (let i = 0; i < rows.length; i++) {
-//       const row = rows[i];
-//       const newRow = table.insertRow(Word.InsertLocation.end);
-//       const newCells = newRow.getCells();
-
-//       newCells.items[0].insertText(row.header.description, Word.InsertLocation.end);
-
-//       for (let j = 0; j < row.values.length; j++) {
-//         newCells.items[j + 1].insertText(row.values[j].value.toString(), Word.InsertLocation.end);
-//       }
-//     }
-
-//     await context.sync();
-//     console.log("Table inserted successfully");
-//   });
-// }
