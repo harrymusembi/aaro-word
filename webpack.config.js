@@ -20,8 +20,8 @@ module.exports = async (env, options) => {
       polyfill: ["core-js/stable", "regenerator-runtime/runtime"],
       taskpane: "./src/taskpane/taskpane.html",
       commands: "./src/commands/commands.js",
-      uploads: "./src/taskpane/uploads.html",
-      templates: ["./src/taskpane/templates.js", "./src/taskpane/templates.html"],
+      templates: "./src/taskpane/templates.html",
+      uploads: ["./src/taskpane/uploads.js", "./src/taskpane/uploads.html"],
       index: ["./src/taskpane/index.js", "./src/taskpane/index.html"],
     },
     output: {

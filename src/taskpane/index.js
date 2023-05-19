@@ -384,14 +384,8 @@ function fetch_data(data) {
     tableData.push(rowData);
   }
   
-  //return tableData;
-  insertTable(tableData);
-}
-
-async function insertTable(tableData) {
-  const data = tableData;
-  
-  // var selectedStyle = selectValue
+  var selectedStyle = selectValue
+  console.log(selectedStyle)
   await Word.run(async (context) => {
     const table = context.document.body.insertTable(data.length, data[0].length, "Start", data);
     table.styleBuiltIn = Word.Style.gridTable4_Accent2;
