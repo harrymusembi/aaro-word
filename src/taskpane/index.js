@@ -27,6 +27,8 @@ Office.onReady((info) => {
 });
 
 
+
+
 function get_data() {
 
   const data = {
@@ -357,15 +359,44 @@ function get_data() {
   return tableData;
 }
 
-async function insertTable(selectValue = 'tableGrid') {
-  const data = get_data();
+function fetch_data(data) {
+  console.log(data);
+  const tableData = [];
+  tableData.push(data.headers[0].map(header => header.code));
+
+  for (let row of data.rows) {
+    const rowData = [row.header.description];
+    if (row.values.length === 0) {
+      for (let i = 1; i < data.headers[0].length; i++) {
+        rowData.push("");
+      }
+    } else {
+      for (let value of row.values) {
+
+        let val = value.value.toLocaleString(undefined, {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        })
+        rowData.push(val);
+      }
+
+    }
+    tableData.push(rowData);
+  }
   
-  var selectedStyle = selectValue
+  //return tableData;
+  insertTable(tableData);
+}
+
+async function insertTable(tableData) {
+  const data = tableData;
+  
+  // var selectedStyle = selectValue
   await Word.run(async (context) => {
     const table = context.document.body.insertTable(data.length, data[0].length, "Start", data);
-    // table.styleBuiltIn = Word.Style.gridTable4_Accent2;
-    console.log(Word.Style[selectValue])
-    table.styleBuiltIn = Word.Style[selectValue];
+    table.styleBuiltIn = Word.Style.gridTable4_Accent2;
+    // console.log(Word.Style[selectValue])
+    // table.styleBuiltIn = Word.Style[selectValue];
  
     await context.sync();
 

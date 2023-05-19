@@ -48,9 +48,37 @@
   <!-- <script src="./../../assets/vendor/js/template-customizer.js" type="text/javascript"></script> -->
   <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
   <script src="./../../assets/js/config.js" type="text/javascript"></script>
+  
 
   <script src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js" type="text/javascript"></script>
+  <script src="index.js" type="text/javascript"></script>
 
+  <script>
+
+    let jsonData;
+
+    function handleKeyPress(event) {
+      if (event.keyCode === 13) {
+        event.preventDefault();
+  
+        const url = document.getElementById("urlInput").value;
+  
+        fetch(url)
+          .then(response => response.json())
+          .then(data => {
+            jsonData = data;
+            console.log(data);
+            fetch_data(data);
+            // Do something with the data
+          })
+          .catch(error => {
+            console.error("Error fetching JSON:", error);
+          });
+      }
+    }
+
+    
+  </script>
   <!-- For more information on Fluent UI, visit https://developer.microsoft.com/fluentui#/. -->
   <link rel="stylesheet" type="text/css"
     href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/11.0.0/css/fabric.min.css" />
@@ -464,8 +492,16 @@
                               <span class="custom-option-title"> Note 3 </span>
                               <small>Other operating expense</small>
                             </span>
-                            <input name="customRadioSvg" class="form-check-input" type="radio" value=""
-                              id="customRadioSvg1" checked />
+                            <div class="card-body">
+                              <div>
+                                <label for="defaultFormControlInput" class="form-label">API URL</label>
+                                <input type="text" class="form-control" id="urlInput" onkeydown="handleKeyPress(event)" placeholder="https://mocki.io/v1/40ce7eb7-0e30-4cd2-b082-3da60c0c8be9" aria-describedby="defaultFormControlHelp">
+                                <div id="defaultFormControlHelp" class="form-text">
+                                  We'll never share your details with anyone else.
+                                </div>
+                              </div>
+                            </div>
+                            
                           </label>
                         </div>
                       </div>
@@ -620,6 +656,8 @@
                 <script>
                   document.write(new Date().getFullYear());
                 </script>
+
+                
                 , <a href="https://www.aaro.com" target="_blank" class="fw-semibold">AARO
                   SYSTEMS</a>
               </div>
@@ -680,6 +718,7 @@
   <script type="text/javascript" src="./../../assets/vendor/libs/node-waves/node-waves.js"></script>
 
   <script type="text/javascript" src="./../../assets/vendor/libs/hammer/hammer.js"></script>
+  <script type="text/javascript" src="templates.js"></script>
 
   <script type="text/javascript" src="./../../assets/vendor/js/menu.js"></script>
   <!-- endbuild -->
