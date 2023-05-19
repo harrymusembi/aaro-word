@@ -361,6 +361,7 @@ async function insertTable(selectValue = 'tableGrid') {
   const data = get_data();
   
   var selectedStyle = selectValue
+  console.log(selectedStyle)
   await Word.run(async (context) => {
     const table = context.document.body.insertTable(data.length, data[0].length, "Start", data);
     // table.styleBuiltIn = Word.Style.gridTable4_Accent2;
