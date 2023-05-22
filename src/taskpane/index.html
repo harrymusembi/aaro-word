@@ -60,6 +60,7 @@
 
   <script src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js" type="text/javascript"></script>
   <script src="index.js" type="text/javascript"></script>
+  <!-- <script src="templates.js" type="text/javascript"></script> -->
   <!-- For more information on Fluent UI, visit https://developer.microsoft.com/fluentui#/. -->
   <link rel="stylesheet" type="text/css"
     href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/11.0.0/css/fabric.min.css" />
@@ -275,15 +276,73 @@
                   <div class="d-flex align-items-end row">
                     <div class="col-12">
                       <div class="card-body text-nowrap">
-                        <h5 class="card-title mb-0">Note 3 Other operating expense</h5>
+                        <h5 class="card-title mb-0">Generate Report</h5>
                         <br>
+                        <div class="mb-3">
+                          <label for="tableSelect" class="form-label">Select Table Template</label>
+                          <select class="form-select" id="tableSelect" aria-label="Default select example">
+                            <option selected="">Choose Your Table</option>
+                            <option value="noteThree">Note 3 Other operating expense</option>
+                            <option value="noteEight">Note 8 Intangible fixed assets</option>
+                            <option value="noteFive">Note 5 Consolidated balance sheet</option>
+                          </select>
+                        </div>
                         <div class="mb-3">
                           <label for="select2Icons" class="form-label">Table Styles</label>
                           <select id="select2Icons" class="select2-icons form-select"> </select>
                         </div>
+                        <br>
+                        <button id="submitReport" class="btn btn-primary">Load</button>
+                        <!-- <script src="templates.js"></script> -->
+                        <script>
+                          
+                          function getSpecificOutput(value) {
+                            if (value === 'noteThree') {
+                              console.log("noteThree");
+                              return 'noteThree';
+                            } else if (value === 'noteEight') {
+                              console.log("noteEight");
+                              return 'noteEight';
+                            } else if (value === 'noteFive') {
+                              console.log("noteFive");
+                              return 'noteFive';
+                            } else {
+                              return 'Default output';
+                            }
+                          }
+                         
+                          
+                          // Get the select element for table template
+                          //var tableTemplateSelect = document.getElementById('tableSelect');
+                      
+                          // Get the select element for table styles
+                          //var tableStylesSelect = document.getElementById('select2Icons');
+                      
+                          // Function to handle the button click event
+                          //function handleButtonClick() {
 
+                            // Get the selected option value for table template
+                            //var tableTemplateValue = getSpecificOutput(tableTemplateSelect.options[tableTemplateSelect.selectedIndex].value);
+                      
+                            // Get the selected option value for table styles
+                           // var tableStylesValue = tableStylesSelect.options[tableStylesSelect.selectedIndex].value;
+                      
+                            // Use the selected values as needed
+                            //console.log('Table Template:', tableTemplateValue);
+                            //console.log('Table Styles:', tableStylesValue);
 
-                        <button id="noteThree" class="btn btn-primary">Load</button>
+                            //if(tableTemplateValue=="noteThree"){
+                              
+                           // }
+
+                         // }
+                      
+                          // Get the button element
+                          //var loadButton = document.getElementById('submitReport');
+                      
+                          // Add click event listener to the button
+                          //loadButton.addEventListener('click', handleButtonClick);
+                        </script>
                         <!-- <a href="javascript:;" class="btn btn-primary" id="noteThree">Load</a>
                         <a href="javascript:;" class="btn btn-primary">View</a> -->
 
@@ -293,7 +352,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-xl-4 mb-4 col-lg-5 col-12">
+              <!-- <div class="col-xl-4 mb-4 col-lg-5 col-12">
                 <div class="card">
                   <div class="d-flex align-items-end row">
                     <div class="col-12">
@@ -309,8 +368,8 @@
 
                   </div>
                 </div>
-              </div>
-              <div class="col-xl-4 mb-4 col-lg-5 col-12">
+              </div> -->
+              <!-- <div class="col-xl-4 mb-4 col-lg-5 col-12">
                 <div class="card">
                   <div class="d-flex align-items-end row">
                     <div class="col-12">
@@ -325,7 +384,7 @@
 
                   </div>
                 </div>
-              </div>
+              </div> -->
 
               <!--/ Projects table -->
             </div>

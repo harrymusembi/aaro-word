@@ -3778,9 +3778,9 @@ async function modifyTableStyle(selectedStyle) {
 async function insertTable(selectedStyle) {
   const data = get_data();
 
-  var table_style = document.getElementById("select2Icons").val;
+  var table_style = selectedStyle;
 
-  console.log(table_style)
+  console.log(table_style);
 
   await Word.run(async (context) => {
     const table = context.document.body.insertTable(data.length, data[0].length, "Start", data);
