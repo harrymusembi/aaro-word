@@ -231,46 +231,6 @@
 
           <div class="container-xxl flex-grow-1 container-p-y">
             <div class="row">
-              <!-- Website Analytics -->
-              <!-- Sales Overview -->
-              <!-- <div class="col-lg-12 col-sm-12 mb-4 ">
-                <div class="card hidden" id="tableTest">
-                  <h5 class="card-header">Templates</h5>
-                  <div class="table-responsive text-nowrap" id="Table1">
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th>Name</th>
-                          <th>Action</th>
-                        </tr>
-                      </thead>
-                      <tbody class="table-border-bottom-0">
-                        <tr class="">
-                          <td> <strong>Note 3 Other operating expense</strong> </td>
-                          <td>
-                            <button type="button" class="btn btn-primary waves-light">Load</button>
-                          </td>
-                        </tr>
-                        <tr class="">
-                          <td> <strong>Note 8 Intangible fixed assets</strong> </td>
-                          <td>
-                            <button type="button" class="btn btn-primary waves-light">Load</button>
-                          </td>
-                        </tr>
-                        <tr class="">
-                          <td> <strong>5 Consolidated balance sheet</strong> </td>
-                          <td>
-                            <button type="button" class="btn btn-primary waves-light">Load</button>
-                          </td>
-                        </tr>
-
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div> -->
-              <!--/ Sales Overview -->
-
               <div class="col-xl-4 mb-4 col-lg-5 col-12">
                 <div class="card">
                   <div class="d-flex align-items-end row">
@@ -278,24 +238,71 @@
                       <div class="card-body text-nowrap">
                         <h5 class="card-title mb-0">Generate Report</h5>
                         <br>
-                        <div class="mb-3">
+                        <div class="col-md mb-3">
                           <label for="tableSelect" class="form-label">Select Table Template</label>
-                          <select class="form-select" id="tableSelect" aria-label="Default select example">
+                          <select class="form-select" id="tableSelect" aria-label="Default select example" required>
                             <option selected="">Choose Your Table</option>
                             <option value="noteThree">Note 3 Other operating expense</option>
                             <option value="noteEight">Note 8 Intangible fixed assets</option>
                             <option value="noteFive">Note 5 Consolidated balance sheet</option>
                           </select>
                         </div>
-                        <div class="mb-3">
+                        <div class="col-md mb-3">
                           <label for="select2Icons" class="form-label">Table Styles</label>
                           <select id="select2Icons" class="select2-icons form-select"> </select>
                         </div>
-                        <br>
-                        <button id="submitReport" class="btn btn-primary">Load</button>
+                        <!-- <div class="col-md mb-3 hidden">
+                          <small class="text-light fw-semibold d-block">First Column Alignment</small>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="columnAlignment" id="columnAlignmentleft"
+                              value="left" checked/>
+                            <label class="form-check-label" for="columnAlignmentleft">Left</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="columnAlignment"
+                              id="columnAlignmentcenter" value="center" />
+                            <label class="form-check-label" for="columnAlignmentcenter">Center</label>
+                          </div>
+                          <div class="form-check form-check-inline mt-3">
+                            <input class="form-check-input" type="radio" name="columnAlignment"
+                              id="columnAlignmentright" value="right" />
+                            <label class="form-check-label" for="columnAlignmentright">Right</label>
+                          </div>
+                          
+                        </div>
+                        <div class="col-md mb-3 hidden">
+                          <small class="text-light fw-semibold d-block">First Row Alignment</small>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="rowAlignment" id="rowAlignmentLeft"
+                              value="left" checked/>
+                            <label class="form-check-label" for="rowAlignmentLeft">Left</label>
+                          </div>
+                          
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="rowAlignment" id="rowAlignmentCenter"
+                              value="center" />
+                            <label class="form-check-label" for="rowAlignmentCenter">center</label>
+                          </div>
+                          <div class="form-check form-check-inline mt-3">
+                            <input class="form-check-input" type="radio" name="rowAlignment" id="rowAlignmentRight"
+                              value="right" />
+                            <label class="form-check-label" for="rowAlignmentRight">right</label>
+                          </div>
+                          
+                        </div> -->
+                        <div class="col-md mb-3">
+                          <label for="decimal" class="form-label">Number of Decimal Places</label>
+                          <input type="text" class="form-control" id="decimalPlace" placeholder="2"
+                            aria-describedby="defaultFormControlHelp" required />
+
+                        </div>
+                        <div class="mb-3">
+                          <button id="submitReport" class="btn btn-primary">Load</button>
+                          <button id="refreshReport" class="btn btn-primary">Refresh</button>
+                        </div>
+
                         <!-- <script src="templates.js"></script> -->
                         <script>
-                          
                           function getSpecificOutput(value) {
                             if (value === 'noteThree') {
                               console.log("noteThree");
@@ -310,83 +317,14 @@
                               return 'Default output';
                             }
                           }
-                         
-                          
-                          // Get the select element for table template
-                          //var tableTemplateSelect = document.getElementById('tableSelect');
-                      
-                          // Get the select element for table styles
-                          //var tableStylesSelect = document.getElementById('select2Icons');
-                      
-                          // Function to handle the button click event
-                          //function handleButtonClick() {
-
-                            // Get the selected option value for table template
-                            //var tableTemplateValue = getSpecificOutput(tableTemplateSelect.options[tableTemplateSelect.selectedIndex].value);
-                      
-                            // Get the selected option value for table styles
-                           // var tableStylesValue = tableStylesSelect.options[tableStylesSelect.selectedIndex].value;
-                      
-                            // Use the selected values as needed
-                            //console.log('Table Template:', tableTemplateValue);
-                            //console.log('Table Styles:', tableStylesValue);
-
-                            //if(tableTemplateValue=="noteThree"){
-                              
-                           // }
-
-                         // }
-                      
-                          // Get the button element
-                          //var loadButton = document.getElementById('submitReport');
-                      
-                          // Add click event listener to the button
-                          //loadButton.addEventListener('click', handleButtonClick);
                         </script>
-                        <!-- <a href="javascript:;" class="btn btn-primary" id="noteThree">Load</a>
-                        <a href="javascript:;" class="btn btn-primary">View</a> -->
-
                       </div>
                     </div>
 
                   </div>
                 </div>
               </div>
-              <!-- <div class="col-xl-4 mb-4 col-lg-5 col-12">
-                <div class="card">
-                  <div class="d-flex align-items-end row">
-                    <div class="col-12">
-                      <div class="card-body text-nowrap">
-                        <h5 class="card-title mb-0">Note 8 Intangible fixed assets</h5>
-                        <br>
-                        <a href="javascript:;" class="btn btn-primary" id="noteEight">Load</a>
-                        <a href="javascript:;" class="btn btn-primary" id="LandscapeNoteEight">Landscape</a>
-                        <a href="javascript:;" class="btn btn-primary" id="PotraitNoteEight">Portrait</a>
 
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-              </div> -->
-              <!-- <div class="col-xl-4 mb-4 col-lg-5 col-12">
-                <div class="card">
-                  <div class="d-flex align-items-end row">
-                    <div class="col-12">
-                      <div class="card-body text-nowrap">
-                        <h5 class="card-title mb-0">Note 5 Consolidated balance sheet</h5>
-                        <br>
-                        <a href="javascript:;" class="btn btn-primary" id="consolidatedBalance">Load</a>
-                        <a href="javascript:;" class="btn btn-primary">View</a>
-
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-              </div> -->
-
-              <!--/ Projects table -->
             </div>
 
 

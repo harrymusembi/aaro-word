@@ -15,7 +15,7 @@
     "build": "webpack --mode production",
     "build:dev": "webpack --mode development",
     "dev": "npm run express-server & sleep 5 && npm run dev-server",
-    "express-server": "node 'C:\\laragon\\www\\test-office\\aaro-testsrc\\taskpane\\server.js",
+    "express-server": "node 'C:\\laragon\\www\\test-office\\aaro-testsrc\\taskpane\\server.js'",
     "hot-node": "nodemon src/taskpane/server.js",
     "dev-server": "webpack serve --mode development --config webpack.config.js",
     "lint": "office-addin-lint check",
