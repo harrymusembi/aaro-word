@@ -1,0 +1,668 @@
+[
+    {
+      "name": "Personal Reports",
+      "isEmpty": true
+    },
+    {
+      "name": "Data entry",
+      "isEmpty": false,
+      "json": {
+        "description": "Data entry",
+        "folders": [],
+        "items": [],
+        "edit": true
+      }
+    },
+    {
+      "name": "Company reports",
+      "isEmpty": false,
+      "json": {
+        "description": null,
+        "folders": [],
+        "items": [
+          {
+            "name": "Cashflow by Company",
+            "type": "Report",
+            "id": 10735
+          },
+          {
+            "name": "Financial statement by Company",
+            "type": "Report",
+            "id": 542
+          },
+          {
+            "name": "Income statement by Company",
+            "type": "Report",
+            "id": 10736
+          },
+          {
+            "name": "Tangible assets",
+            "type": "Report",
+            "id": 543
+          }
+        ],
+        "edit": true
+      }
+    },
+    {
+      "name": "Match reports",
+      "isEmpty": false,
+      "json": {
+        "description": null,
+        "folders": [],
+        "items": [],
+        "edit": true
+      }
+    },
+    {
+      "name": "Group accounting",
+      "isEmpty": false,
+      "json": {
+        "description": "Group accounting for analysing financial data",
+        "folders": [
+          {
+            "name": "Statutory",
+            "isEmpty": false
+          },
+          {
+            "name": "Notes",
+            "isEmpty": false
+          },
+          {
+            "name": "Currency",
+            "isEmpty": false
+          },
+          {
+            "name": "Closing check reports",
+            "isEmpty": false
+          },
+          {
+            "name": "Analysis reports",
+            "isEmpty": false
+          },
+          {
+            "name": "Audit",
+            "isEmpty": false
+          },
+          {
+            "name": "Period comparison",
+            "isEmpty": false
+          },
+          {
+            "name": "ESEF",
+            "isEmpty": false
+          }
+        ],
+        "items": [],
+        "edit": true
+      }
+    },
+    {
+      "name": "Group management",
+      "isEmpty": false,
+      "json": {
+        "description": "Group management",
+        "folders": [
+          {
+            "name": "Operational reports",
+            "isEmpty": false
+          },
+          {
+            "name": "Management reports",
+            "isEmpty": false
+          },
+          {
+            "name": "Charts",
+            "isEmpty": false
+          }
+        ],
+        "items": [],
+        "edit": true
+      }
+    },
+    {
+      "name": "Business Area reports",
+      "isEmpty": false
+    },
+    {
+      "name": "Dashboard",
+      "isEmpty": false,
+      "json": {
+        "description": "Dashboard",
+        "folders": [
+          {
+            "name": "Business Area controller",
+            "isEmpty": false
+          },
+          {
+            "name": "Company reporter",
+            "isEmpty": false
+          },
+          {
+            "name": "Group",
+            "isEmpty": false
+          },
+          {
+            "name": "HQ",
+            "isEmpty": false
+          },
+          {
+            "name": "AARO",
+            "isEmpty": false
+          },
+          {
+            "name": "Flash",
+            "isEmpty": false
+          },
+          {
+            "name": "Graphic",
+            "isEmpty": false
+          },
+          {
+            "name": "Graphs",
+            "isEmpty": false
+          },
+          {
+            "name": "Gauges",
+            "isEmpty": false
+          }
+        ],
+        "items": [],
+        "edit": true
+      }
+    },
+    {
+      "name": "Cash forecast",
+      "isEmpty": false,
+      "json": {
+        "description": "Cash forecast",
+        "folders": [
+          {
+            "name": "Import files",
+            "isEmpty": false
+          },
+          {
+            "name": "Check import",
+            "isEmpty": false
+          },
+          {
+            "name": "Grids",
+            "isEmpty": false
+          }
+        ],
+        "items": [
+          {
+            "name": "Balance per Currency and Bank",
+            "type": "Report",
+            "id": 10756
+          },
+          {
+            "name": "Balance per Day",
+            "type": "Report",
+            "id": 10761
+          },
+          {
+            "name": "Balance per Month",
+            "type": "Report",
+            "id": 10762
+          },
+          {
+            "name": "Balance per TransCurr",
+            "type": "Report",
+            "id": 10763
+          },
+          {
+            "name": "Balance per Week",
+            "type": "Report",
+            "id": 10764
+          },
+          {
+            "name": "Balance per Week and Customer",
+            "type": "Report",
+            "id": 10783
+          },
+          {
+            "name": "Curr LOC per currency",
+            "type": "Report",
+            "id": 10767
+          },
+          {
+            "name": "Curr SEK per currency",
+            "type": "Report",
+            "id": 10766
+          },
+          {
+            "name": "Currency by Company",
+            "type": "Report",
+            "id": 10768
+          },
+          {
+            "name": "Forecast accuracy",
+            "type": "Report",
+            "id": 10769
+          }
+        ],
+        "edit": true
+      }
+    },
+    {
+      "name": "Word",
+      "isEmpty": false,
+      "json": {
+        "description": "Word document reports",
+        "folders": [
+          {
+            "name": "Annual report, group",
+            "isEmpty": false
+          },
+          {
+            "name": "Annual report, company",
+            "isEmpty": false
+          },
+          {
+            "name": "Interim report",
+            "isEmpty": true
+          },
+          {
+            "name": "Sales flash",
+            "isEmpty": true
+          },
+          {
+            "name": "Annual report ESEF",
+            "isEmpty": false
+          }
+        ],
+        "items": [
+          {
+            "name": "Annual_Report_Company.docx",
+            "type": "Document",
+            "id": 10149
+          },
+          {
+            "name": "Annual_Report_ESEF.docx",
+            "type": "Document",
+            "id": 10151
+          },
+          {
+            "name": "Annual_Report_Group.docx",
+            "type": "Document",
+            "id": 10178
+          }
+        ],
+        "edit": true
+      }
+    },
+    {
+      "name": "Training",
+      "isEmpty": false,
+      "json": {
+        "description": "Training",
+        "folders": [
+          {
+            "name": "Analysis training",
+            "isEmpty": false
+          },
+          {
+            "name": "Legal training",
+            "isEmpty": false
+          },
+          {
+            "name": "Basic training - closing in AARO",
+            "isEmpty": false
+          },
+          {
+            "name": "System administration training",
+            "isEmpty": false
+          },
+          {
+            "name": "AARO lease",
+            "isEmpty": false
+          }
+        ],
+        "items": [],
+        "edit": true
+      }
+    },
+    {
+      "name": "Other reports",
+      "isEmpty": false,
+      "json": {
+        "description": null,
+        "folders": [
+          {
+            "name": "Accounting standard",
+            "isEmpty": false
+          },
+          {
+            "name": "Journals",
+            "isEmpty": false
+          },
+          {
+            "name": "Budget",
+            "isEmpty": false
+          },
+          {
+            "name": "Files",
+            "isEmpty": false
+          },
+          {
+            "name": "Links",
+            "isEmpty": false
+          },
+          {
+            "name": "Management",
+            "isEmpty": true
+          },
+          {
+            "name": "Drillthru",
+            "isEmpty": false
+          },
+          {
+            "name": "SIE import",
+            "isEmpty": false
+          },
+          {
+            "name": "Other",
+            "isEmpty": false
+          },
+          {
+            "name": "PPT generator",
+            "isEmpty": false
+          }
+        ],
+        "items": [
+          {
+            "name": "Annual Report.pdf",
+            "type": "Document",
+            "id": 10072
+          },
+          {
+            "name": "Ratios",
+            "type": "Report",
+            "id": 394
+          },
+          {
+            "name": "Salary by Function",
+            "type": "Report",
+            "id": 393
+          },
+          {
+            "name": "Sales and Markets.pdf",
+            "type": "Document",
+            "id": 10073
+          },
+          {
+            "name": "X_IS_ALL_SOURCES",
+            "type": "Report",
+            "id": 182
+          }
+        ],
+        "edit": true
+      }
+    },
+    {
+      "name": "Analysis",
+      "isEmpty": false,
+      "json": {
+        "description": "Analysis Reports",
+        "folders": [
+          {
+            "name": "Budget",
+            "isEmpty": false
+          }
+        ],
+        "items": [
+          {
+            "name": "Actual vs Budget",
+            "type": "Report",
+            "id": 10738
+          },
+          {
+            "name": "Actual vs Budget, including chart",
+            "type": "Report",
+            "id": 10804
+          },
+          {
+            "name": "Allocation report",
+            "type": "Report",
+            "id": 10739
+          },
+          {
+            "name": "Currency exposure",
+            "type": "Report",
+            "id": 10741
+          },
+          {
+            "name": "Currency report",
+            "type": "Report",
+            "id": 10742
+          },
+          {
+            "name": "Drill thru",
+            "type": "Report",
+            "id": 10743
+          },
+          {
+            "name": "Drill thru by Voucher",
+            "type": "Report",
+            "id": 10744
+          },
+          {
+            "name": "Function by Salary",
+            "type": "Report",
+            "id": 10745
+          },
+          {
+            "name": "Function report",
+            "type": "Report",
+            "id": 10746
+          },
+          {
+            "name": "Group IS by Period",
+            "type": "Report",
+            "id": 10748
+          },
+          {
+            "name": "Isolated months",
+            "type": "Report",
+            "id": 10749
+          },
+          {
+            "name": "Operational IS",
+            "type": "Report",
+            "id": 10750
+          },
+          {
+            "name": "Other rate report",
+            "type": "Report",
+            "id": 10751
+          },
+          {
+            "name": "Ratios report",
+            "type": "Report",
+            "id": 10752
+          },
+          {
+            "name": "Top 10 Product",
+            "type": "Report",
+            "id": 10754
+          },
+          {
+            "name": "Top 10 Product, table",
+            "type": "Report",
+            "id": 10805
+          },
+          {
+            "name": "Travel expenses allocation",
+            "type": "Report",
+            "id": 10755
+          }
+        ],
+        "edit": true
+      }
+    },
+    {
+      "name": "IFRS16",
+      "isEmpty": false,
+      "json": {
+        "description": "Folder for Data Entry and Analysis of IFRS16",
+        "folders": [
+          {
+            "name": "Dashboard",
+            "isEmpty": false
+          },
+          {
+            "name": "Data entry",
+            "isEmpty": false
+          },
+          {
+            "name": "Disclosure notes",
+            "isEmpty": false
+          },
+          {
+            "name": "Reports",
+            "isEmpty": false
+          },
+          {
+            "name": "Lease analysis",
+            "isEmpty": false
+          }
+        ],
+        "items": [],
+        "edit": true
+      }
+    },
+    {
+      "name": "Demo",
+      "isEmpty": false,
+      "json": {
+        "description": "Folder for Sales demo",
+        "folders": [
+          {
+            "name": "AARO",
+            "isEmpty": false
+          },
+          {
+            "name": "AARO Cash Forecast",
+            "isEmpty": false
+          },
+          {
+            "name": "AARO Lease",
+            "isEmpty": false
+          },
+          {
+            "name": "AARO Integrator II",
+            "isEmpty": false
+          },
+          {
+            "name": "Real Estate",
+            "isEmpty": false
+          },
+          {
+            "name": "Proforma",
+            "isEmpty": false
+          }
+        ],
+        "items": [],
+        "edit": true
+      }
+    },
+    {
+      "name": "Test reports",
+      "isEmpty": false,
+      "json": {
+        "description": "Test reports",
+        "folders": [
+          {
+            "name": "Account Test",
+            "isEmpty": false
+          },
+          {
+            "name": "TEST_AT",
+            "isEmpty": false
+          },
+          {
+            "name": "Check Reports",
+            "isEmpty": false
+          },
+          {
+            "name": "Test Lease",
+            "isEmpty": false
+          },
+          {
+            "name": "TEST_OC",
+            "isEmpty": false
+          },
+          {
+            "name": "TEST_PT",
+            "isEmpty": false
+          },
+          {
+            "name": "TEST_RC",
+            "isEmpty": false
+          },
+          {
+            "name": "TEST_TA",
+            "isEmpty": false
+          },
+          {
+            "name": "ESEF",
+            "isEmpty": true
+          },
+          {
+            "name": "Performance",
+            "isEmpty": false
+          },
+          {
+            "name": "Reconciliation",
+            "isEmpty": false
+          },
+          {
+            "name": "TEST_LTA",
+            "isEmpty": false
+          },
+          {
+            "name": "Cost Company",
+            "isEmpty": false
+          },
+          {
+            "name": "DrillThru & Import",
+            "isEmpty": false
+          },
+          {
+            "name": "Period Modifier",
+            "isEmpty": false
+          },
+          {
+            "name": "Validation",
+            "isEmpty": false
+          },
+          {
+            "name": "Legal Subgroup",
+            "isEmpty": false
+          }
+        ],
+        "items": [
+          {
+            "name": "PRODUCTP-1007",
+            "type": "Report",
+            "id": 21772
+          },
+          {
+            "name": "PRODUCTP-1007_2301-2307",
+            "type": "Report",
+            "id": 21773
+          }
+        ],
+        "edit": true
+      }
+    },
+    {
+      "name": "Reference index",
+      "isEmpty": false
+    },
+    {
+      "name": "Others' Personal Reports",
+      "isEmpty": false
+    }
+  ]
