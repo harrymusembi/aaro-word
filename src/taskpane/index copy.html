@@ -59,7 +59,7 @@
   <script src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js" type="text/javascript"></script>
   <script src="index.js" type="text/javascript"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
   <!-- <script src="templates.js" type="text/javascript"></script> -->
   <!-- For more information on Fluent UI, visit https://developer.microsoft.com/fluentui#/. -->
@@ -333,137 +333,134 @@
                         <div class="mb-3">
                           <button id="submitReport" class="btn btn-primary"><i class="fa fa-tasks" aria-hidden="true">
                               Load</i></button>
-                          <!-- Your button -->
-                          <button id="refreshReportModal" class="btn btn-primary" data-toggle="modal"
-                            data-target="#myModal">
-                            <i class="fa fa-retweet" aria-hidden="true" onclick="populateModal()"></i> Refresh</button>
+<!-- Your button -->
+<button id="refreshReportModal" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+  <i class="fa fa-retweet" aria-hidden="true" onclick="populateModal()"></i> Refresh</button>
 
-                          <script>
+  <script>
 
-                            async function populateModal() {
-                              const apiData = localStorage.getItem('apiData');
-                              let api_data = JSON.parse(apiData);
-                              const dimensions = api_data.staticAxis.criteria
+async function populateModal() {
+  const apiData = localStorage.getItem('apiData');
+let api_data = JSON.parse(apiData);
+const dimensions = api_data.staticAxis.criteria
 
-                              console.log(dimensions)
+console.log(dimensions)
 
-                              const container = document.getElementById('checkboxContainer2');
-                              const dimensionsDropdown = document.getElementById('DimensionsDropdown2');
-                              // container.classList.remove('hidden');
-                              const selectedDimensions = new Set();
-                              const dropdownMap = new Map();
-
+const container = document.getElementById('checkboxContainer2');
+const dimensionsDropdown = document.getElementById('DimensionsDropdown2');
+// container.classList.remove('hidden');
+const selectedDimensions = new Set();
+const dropdownMap = new Map();
 
 
-                              for (const item of dimensions) {
-                                const checkbox = document.createElement('input');
-                                checkbox.type = 'checkbox';
-                                checkbox.className = 'form-check-input'; // Add the appropriate class
-                                checkbox.name = 'rowAlignment';
-                                checkbox.id = `rowAlignment${item.dimension}`; // Generate a unique ID for each checkbox
-                                checkbox.value = item.dimension;
 
-                                const label = document.createElement('label');
-                                label.className = 'form-check-label'; // Add the appropriate class
-                                label.htmlFor = `rowAlignment${item.dimension}`;
-                                label.appendChild(document.createTextNode(item.dimension));
+for (const item of dimensions) {
+  const checkbox = document.createElement('input');
+  checkbox.type = 'checkbox';
+  checkbox.className = 'form-check-input'; // Add the appropriate class
+  checkbox.name = 'rowAlignment';
+  checkbox.id = `rowAlignment${item.dimension}`; // Generate a unique ID for each checkbox
+  checkbox.value = item.dimension;
+
+  const label = document.createElement('label');
+  label.className = 'form-check-label'; // Add the appropriate class
+  label.htmlFor = `rowAlignment${item.dimension}`;
+  label.appendChild(document.createTextNode(item.dimension));
 
 
-                                const div = document.createElement('div');
-                                div.className = 'form-check form-check-inline';
-                                div.appendChild(checkbox);
-                                div.appendChild(label);
+  const div = document.createElement('div');
+  div.className = 'form-check form-check-inline';
+  div.appendChild(checkbox);
+  div.appendChild(label);
 
-                                container.appendChild(div);
+  container.appendChild(div);
 
-                                checkbox.addEventListener('change', async () => {
-                                  if (checkbox.checked) {
-                                    if (!dropdownMap.has(item.dimension)) {
-                                      await createDropdown(item.dimension);
-                                    }
-                                  } else {
-                                    if (dropdownMap.has(item.dimension)) {
-                                      removeDropdown(item.dimension);
-                                    }
-                                  }
-                                });
+  checkbox.addEventListener('change', async () => {
+    if (checkbox.checked) {
+      if (!dropdownMap.has(item.dimension)) {
+        await createDropdown(item.dimension);
+      }
+    } else {
+      if (dropdownMap.has(item.dimension)) {
+        removeDropdown(item.dimension);
+      }
+    }
+  });
 
-                              }
-                            }
+}
+}
 
-                            async function createDropdown(dimension) {
-                              const selectDropdown = document.createElement('select');
-                              selectDropdown.className = 'select2-icons form-select mb-3';
-                              selectDropdown.dataset.dimension = dimension; // Store the dimension as a dataset attribute
-                              const dimensionsDropdown = document.getElementById('DimensionsDropdown2');
+async function createDropdown(dimension) {
+        const selectDropdown = document.createElement('select');
+        selectDropdown.className = 'select2-icons form-select mb-3';
+        selectDropdown.dataset.dimension = dimension; // Store the dimension as a dataset attribute
+        const dimensionsDropdown = document.getElementById('DimensionsDropdown2');
 
-                              // Add the select dropdown to the 'dimensionsDropdown' div
-                              dimensionsDropdown.appendChild(selectDropdown);
+        // Add the select dropdown to the 'dimensionsDropdown' div
+        dimensionsDropdown.appendChild(selectDropdown);
 
-                              const DData = await getDimensions(dimension);
-                              const DimensionsData = JSON.parse(JSON.stringify(DData));
+        const DData = await getDimensions(dimension);
+        const DimensionsData = JSON.parse(JSON.stringify(DData));
 
-                              for (const option of DimensionsData.members) {
-                                const dropdownOption = document.createElement('option');
-                                dropdownOption.value = option.name;
-                                dropdownOption.textContent = option.name;
-                                selectDropdown.appendChild(dropdownOption);
-                              }
+        for (const option of DimensionsData.members) {
+          const dropdownOption = document.createElement('option');
+          dropdownOption.value = option.name;
+          dropdownOption.textContent = option.name;
+          selectDropdown.appendChild(dropdownOption);
+        }
 
-                              // Store the dropdown reference in the map
-                              dropdownMap.set(dimension, selectDropdown);
-                            }
+        // Store the dropdown reference in the map
+        dropdownMap.set(dimension, selectDropdown);
+      }
 
-                            async function removeDropdown(dimension) {
-                              const selectDropdown = dropdownMap.get(dimension);
-                              if (selectDropdown) {
-                                selectDropdown.remove();
-                                dropdownMap.delete(dimension);
-                              }
-                            }
+      async function removeDropdown(dimension) {
+        const selectDropdown = dropdownMap.get(dimension);
+        if (selectDropdown) {
+          selectDropdown.remove();
+          dropdownMap.delete(dimension);
+        }
+      }
 
-                            document.getElementById("refreshReportModal").addEventListener("click", populateModal);
+      document.getElementById("refreshReportModal").addEventListener("click", populateModal);
 
-                          </script>
+  </script>
 
-                          <!-- Modal Structure --><br><br><br>
-                          <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true"
-                            style="padding-top: 120px; width: 700px;">
-                            <div class="modal-dialog" role="document">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h5 class="modal-title" id="exampleModalLabel">Refresh Parameters</h5>
-                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                  </button>
-                                </div>
-                                <div class="modal-body">
-                                  <div class="col-md mb-3">
-                                    <label class="form-label">Select Parameters You Would Like To Change. <br>If you do
-                                      not want To Change Click Submit Below<br></label><br>
+<!-- Modal Structure --><br><br><br>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="padding-top: 120px;">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Refresh Parameters</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="col-md mb-3">
+        <label class="form-label">Select Parameters You Would Like To Change. <br>If you do not want To Change Click Submit Below<br></label><br>
+        <div id="checkboxContainer2" class="form-check form-check-inline">
+        </div>
+      </div>
 
-                                  </div>
-                                  <div id="checkboxContainer2" class="form-check form-check-inline">
-                                  </div>
 
-                                  <div class="col-md mb-3 hidden">
-                                    <label class="form-label" id="selectCreiteria"></label>
-                                    <!-- <select  class="select2-icons form-select">
+      <div class="col-md mb-3 hidden">
+        <label class="form-label" id="selectCreiteria"></label>
+        <!-- <select  class="select2-icons form-select">
 
         </select> -->
-                                    <div id="DimensionsDropdown2"></div>
+        <div id="DimensionsDropdown2"></div>
 
-                                  </div>
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                  <button id="refreshReport" type="button" class="btn btn-primary">Refresh</button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
+      </div>    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      <button id="refreshReport" type="button" class="btn btn-primary">Save changes</button>
+    </div>
+  </div>
+</div>
+</div>
+                                    
+                          <button id="ClearReport" class="btn btn-primary"><i class="fa fa-times" aria-hidden="true">
+                              Clear </i></button>
                         </div>
 
                         <!-- <script src="templates.js"></script> -->
@@ -560,10 +557,10 @@
 </script> -->
   <!-- Core JS -->
   <!-- build:js ./../../assets/vendor/js/core.js -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
   <script type="text/javascript" src="./../../assets/vendor/libs/jquery/jquery.js"></script>
@@ -587,6 +584,84 @@
   <!-- Page JS -->
   <!-- <script type="text/javascript" src="./../../assets/js/form-validation.js"></script> -->
   <script>
+    window.addEventListener("load", () => {
+      const selectElement = document.getElementById("select2Icons");
+
+      // Create an XMLHttpRequest object
+      const xhr = new XMLHttpRequest();
+
+      // Configure the request
+      xhr.open("GET", "http://localhost:3000/table_styles", true);
+
+      // Set the response type to JSON
+      xhr.responseType = "json";
+
+      // Define the callback function for the AJAX request
+      xhr.onload = function () {
+        if (xhr.status === 200) {
+          const tableStyles = xhr.response;
+
+          // Group the table styles
+          const groupedOptions = {
+            "Table Grid": [],
+            "Plain Table": [],
+            "Grid Table 1 Light": [],
+            "Grid Table 2": [],
+            "Grid Table 3": [],
+            "Grid Table 4": [],
+            "Grid Table 5 Dark": [],
+            "Grid Table 6 Colorful": [],
+            "Grid Table 7 Colorful": []
+            // Add more groups as needed
+          };
+
+          tableStyles.forEach((style) => {
+            if (style.name.startsWith("Table Grid")) {
+              groupedOptions["Table Grid"].push(style);
+            } else if (style.name.startsWith("Plain Table")) {
+              groupedOptions["Plain Table"].push(style);
+            } else if (style.name.startsWith("Grid Table 1 Light")) {
+              groupedOptions["Grid Table 1 Light"].push(style);
+            } else if (style.name.startsWith("Grid Table 2")) {
+              groupedOptions["Grid Table 2"].push(style);
+            } else if (style.name.startsWith("Grid Table 3")) {
+              groupedOptions["Grid Table 3"].push(style);
+            } else if (style.name.startsWith("Grid Table 4")) {
+              groupedOptions["Grid Table 4"].push(style);
+            } else if (style.name.startsWith("Grid Table 5 Dark")) {
+              groupedOptions["Grid Table 5 Dark"].push(style);
+            } else if (style.name.startsWith("Grid Table 6 Colorful")) {
+              groupedOptions["Grid Table 6 Colorful"].push(style);
+            } else if (style.name.startsWith("Grid Table 7 Colorful")) {
+              groupedOptions["Grid Table 7 Colorful"].push(style);
+            }
+            // Add more conditions to group the table styles based on your desired logic
+          });
+
+          // Generate the select options dynamically
+          for (const groupName in groupedOptions) {
+            const group = document.createElement("optgroup");
+            group.label = groupName;
+            groupedOptions[groupName].forEach((optionValue) => {
+              const option = document.createElement("option");
+              option.value = optionValue.slug; // Use the 'slug' property as the option value
+              option.textContent = optionValue.name; // Use the 'name' property as the option text
+              group.appendChild(option);
+            });
+            selectElement.appendChild(group);
+          }
+        } else {
+          console.error("Error loading table styles:", xhr.status);
+        }
+      };
+
+      // Send the request
+      xhr.send();
+    });
+
+
+
+
 
     $(document).ready(function () {
       // Retrieve the stored JSON data from local storage
@@ -607,11 +682,11 @@
         location.reload();
       });
 
-
+      
 
       const apiData = localStorage.getItem('apiData');
       let api_data = JSON.parse(apiData);
-      const dimensions = api_data.criteria
+      const dimensions = api_data.staticAxis.criteria
 
       console.log(dimensions)
 
@@ -657,9 +732,57 @@
 
       }
 
-    });
+
+      // function populateModal() {
+
+      //   const apiData = localStorage.getItem('apiData');
+      //   let api_data = JSON.parse(apiData);
+      //   const dimensions = api_data.staticAxis.criteria
+
+      //   console.log(dimensions)
+
+      //   const container = document.getElementById('checkboxContainer2');
+      //   const dimensionsDropdown2 = document.getElementById('DimensionsDropdown2');
+      //   // container.classList.remove('hidden');
+      //   const selectedDimensions = new Set();
+      //   const dropdownMap = new Map();
 
 
+      //   for (const item of dimensions) {
+      //     const checkbox = document.createElement('input');
+      //     checkbox.type = 'checkbox';
+      //     checkbox.className = 'form-check-input'; // Add the appropriate class
+      //     checkbox.name = 'rowAlignment';
+      //     checkbox.id = `rowAlignment${item.dimension}`; // Generate a unique ID for each checkbox
+      //     checkbox.value = item.dimension;
+
+      //     const label = document.createElement('label');
+      //     label.className = 'form-check-label'; // Add the appropriate class
+      //     label.htmlFor = `rowAlignment${item.dimension}`;
+      //     label.appendChild(document.createTextNode(item.dimension));
+
+
+      //     const div = document.createElement('div');
+      //     div.className = 'form-check form-check-inline';
+      //     div.appendChild(checkbox);
+      //     div.appendChild(label);
+
+      //     container.appendChild(div);
+
+      //     checkbox.addEventListener('change', async () => {
+      //       if (checkbox.checked) {
+      //         if (!dropdownMap.has(item.dimension)) {
+      //           await createDropdown(item.dimension);
+      //         }
+      //       } else {
+      //         if (dropdownMap.has(item.dimension)) {
+      //           removeDropdown(item.dimension);
+      //         }
+      //       }
+      //     });
+
+      //   }
+      // }
       async function createDropdown(dimension) {
         const selectDropdown = document.createElement('select');
         selectDropdown.className = 'select2-icons form-select mb-3';
@@ -690,95 +813,7 @@
         }
       }
 
-      async function fetchTableStyles() {
-      var token = localStorage.getItem('aaroWebToken');
-      try {
-        const url = 'https://aaro-web.test/api/v1/reports/table_styles';
-        const response = await $.ajax({
-          url: url,
-          type: 'GET',
-          headers: {
-            'Accept': 'application/json',
-            'Authorization': `Bearer ${token}`
-          },
-          dataType: 'json'
-        });
-
-        console.log(response);
-        return response;
-      } catch (error) {
-        console.error('Error fetching table styles:', error);
-        throw error;
-      }
-    }
-
-  window.addEventListener("load", async () => {
-    const selectElement = document.getElementById("select2Icons");
-
-    try {
-      const response = await fetchTableStyles();
-
-      console.log('Response:', response);
-
-      const tableStylesArray = Object.entries(response).map(([slug, name]) => ({ slug, name }));
-        // Group the table styles
-        const groupedOptions = {
-            "Table Grid": [],
-            "Plain Table": [],
-            "Grid Table 1 Light": [],
-            "Grid Table 2": [],
-            "Grid Table 3": [],
-            "Grid Table 4": [],
-            "Grid Table 5 Dark": [],
-            "Grid Table 6 Colorful": [],
-            "Grid Table 7 Colorful": []
-            // Add more groups as needed
-        };
-
-        tableStylesArray.forEach((style) => {
-            if (style.name.startsWith("Table Grid")) {
-                groupedOptions["Table Grid"].push(style);
-            } else if (style.name.startsWith("Plain Table")) {
-                groupedOptions["Plain Table"].push(style);
-            } else if (style.name.startsWith("Grid Table 1 Light")) {
-                groupedOptions["Grid Table 1 Light"].push(style);
-            } else if (style.name.startsWith("Grid Table 2")) {
-                groupedOptions["Grid Table 2"].push(style);
-            } else if (style.name.startsWith("Grid Table 3")) {
-                groupedOptions["Grid Table 3"].push(style);
-            } else if (style.name.startsWith("Grid Table 4")) {
-                groupedOptions["Grid Table 4"].push(style);
-            } else if (style.name.startsWith("Grid Table 5 Dark")) {
-                groupedOptions["Grid Table 5 Dark"].push(style);
-            } else if (style.name.startsWith("Grid Table 6 Colorful")) {
-                groupedOptions["Grid Table 6 Colorful"].push(style);
-            } else if (style.name.startsWith("Grid Table 7 Colorful")) {
-                groupedOptions["Grid Table 7 Colorful"].push(style);
-            }
-            // Add more conditions to group the table styles based on your desired logic
-        });
-
-        // Generate the select options dynamically
-        for (const groupName in groupedOptions) {
-            const group = document.createElement("optgroup");
-            group.label = groupName;
-            groupedOptions[groupName].forEach((optionValue) => {
-                const option = document.createElement("option");
-                option.value = optionValue.slug; // Use the 'slug' property as the option value
-                option.textContent = optionValue.name; // Use the 'name' property as the option text
-                group.appendChild(option);
-            });
-            selectElement.appendChild(group);
-        }
-    } catch (error) {
-        console.error('Error loading table styles:', error);
-    }
-});
-
-
-
-    
-
+    });
   </script>
 </body>
 

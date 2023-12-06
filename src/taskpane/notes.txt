@@ -1,0 +1,2 @@
+1. Refreshing one report - User should see all the parameters for selection.
+2.  

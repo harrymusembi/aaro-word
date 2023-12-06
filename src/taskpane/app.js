@@ -53,7 +53,7 @@ $(document).ready(function () {
     // console.log(password);
 
     $.ajax({
-      url: "http://localhost:3000/login",
+      url: "https://aaro-web.test/api/v1/auth/login",
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -64,8 +64,11 @@ $(document).ready(function () {
       }),
       success: function (response) {
         console.log(response);
-        if (response.success == true) {
+        if (response.status == true) {
           sessionStorage.setItem("isLoggedIn", true);
+          console.log(response.token);
+          // Store the token for reuse in subsequent API calls
+          sessionStorage.setItem("aaroWebToken", response.token);
           console.log("Login successful");
           window.location.href = "/index.html"; // Redirect to the specified URL
         } else {
@@ -80,10 +83,10 @@ $(document).ready(function () {
 
   $("#logoutButton").click(function () {
     $.ajax({
-      url: "http://localhost:3000/logout",
+      url: "https://aaro-web.test/api/v1/auth/logout",
       method: "GET",
       success: function (response) {
-        if (response.success == true) {
+        if (response.status == true) {
           console.log(response);
           console.log("Logout successful");
           // Redirect to the login page or display a message
