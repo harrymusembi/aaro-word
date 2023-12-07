@@ -338,18 +338,43 @@
                             data-target="#myModal">
                             <i class="fa fa-retweet" aria-hidden="true" onclick="populateModal()"></i> Refresh</button>
 
+                          <button id="TestReport" class="btn btn-primary"><i class="fa fa-tasks" aria-hidden="true">
+                              Test</i></button>
+
+                          <button id="refreshReport" class="btn btn-primary"><i class="fa fa-tasks" aria-hidden="true">
+                              refresh selected</i></button>
+
+                          <button id="refreshAll" class="btn btn-primary"><i class="fa fa-retweet" aria-hidden="true"></i> Refresh All</button>
                           <script>
 
                             async function populateModal() {
+                              removeDropdown1();
+                              const reportIds = localStorage.getItem('reportOrders');
+                              console.log("reports in order");
+                              console.log(reportIds);
+                              console.log(reportIds.length);
+                              // reportIds.forEach((item) => {
+                              //   console.log(item); // Access each array item directly
+                              // });
+
+                              // for (const item of reportIds) {
+                              //     console.log(item); // Access each array item directly
+                              // // }
+                              // for (let i = 0; i < reportIds.length; i++) {
+                              //   console.log(reportIds[i]); // Access each array item using index i
+                              // }
+
+
                               const apiData = localStorage.getItem('apiData');
                               let api_data = JSON.parse(apiData);
                               const dimensions = api_data.staticAxis.criteria
 
-                              console.log(dimensions)
+                              console.log(dimensions);
 
                               const container = document.getElementById('checkboxContainer2');
                               const dimensionsDropdown = document.getElementById('DimensionsDropdown2');
-                              // container.classList.remove('hidden');
+                              container.classList.remove('hidden');
+
                               const selectedDimensions = new Set();
                               const dropdownMap = new Map();
 
@@ -373,6 +398,7 @@
                                 div.className = 'form-check form-check-inline';
                                 div.appendChild(checkbox);
                                 div.appendChild(label);
+                                console.log("here");
 
                                 container.appendChild(div);
 
@@ -380,15 +406,18 @@
                                   if (checkbox.checked) {
                                     if (!dropdownMap.has(item.dimension)) {
                                       await createDropdown(item.dimension);
+
                                     }
                                   } else {
                                     if (dropdownMap.has(item.dimension)) {
+                                      console.log("hi joe");
                                       removeDropdown(item.dimension);
                                     }
                                   }
                                 });
 
                               }
+                              container.appendChild(reportIds);
                             }
 
                             async function createDropdown(dimension) {
@@ -415,11 +444,27 @@
                             }
 
                             async function removeDropdown(dimension) {
-                              const selectDropdown = dropdownMap.get(dimension);
-                              if (selectDropdown) {
-                                selectDropdown.remove();
-                                dropdownMap.delete(dimension);
+                              let checkboxparameters = document.getElementById('checkboxContainer2').remove();
+                              checkboxparameters.replaceChild("checkboxContainer")
+
+                              // const selectDropdown = dropdownMap.get(dimension);
+                              // if (selectDropdown) {
+                              //   selectDropdown.remove();
+                              //   dropdownMap.delete(dimension);
+                              // }
+                            }
+
+                            function removeDropdown1() {
+                              let checkboxparameters = document.getElementById('checkboxContainer2');
+                              //   checkboxparameters.replaceChild("checkboxContainer2")
+                              while (checkboxparameters.firstChild) {
+                                checkboxparameters.removeChild(checkboxparameters.firstChild);
                               }
+                              // const selectDropdown = dropdownMap.get(dimension);
+                              // if (selectDropdown) {
+                              //   selectDropdown.remove();
+                              //   dropdownMap.delete(dimension);
+                              // }
                             }
 
                             document.getElementById("refreshReportModal").addEventListener("click", populateModal);
@@ -458,7 +503,7 @@
                                 </div>
                                 <div class="modal-footer">
                                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                  <button id="refreshReport" type="button" class="btn btn-primary">Refresh</button>
+                                  <button id="refreshReport11" type="button" class="btn btn-primary">Refresh</button>
                                 </div>
                               </div>
                             </div>
@@ -530,34 +575,6 @@
     <div class="drag-target"></div>
   </div>
 
-  <!--/ Layout wrapper -->
-  <!-- <script>
-
-    const form = document.getElementById('uploadForm');
-    const fileInput = document.getElementById('bs-validation-upload-file');
-
-    form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    
-    const file = fileInput.files[0];
-    const reader = new FileReader();
-
-    reader.addEventListener('load', () => {
-        const data = JSON.parse(reader.result);
-        const data = JSON.parse(reader.result);
-    const translatedData = await translateClient.translate(data, '<target-language-code>');
-
-    Office.context.document.setSelectedDataAsync(translatedData, {
-      coercionType: Office.CoercionType.Text,
-        console.log(data);
-    });
-
-    reader.readAsText(file);
-    });
-
-       
-
-</script> -->
   <!-- Core JS -->
   <!-- build:js ./../../assets/vendor/js/core.js -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -587,6 +604,144 @@
   <!-- Page JS -->
   <!-- <script type="text/javascript" src="./../../assets/js/form-validation.js"></script> -->
   <script>
+
+    async function populateModal() {
+      removeDropdown1();
+      const reportIds = localStorage.getItem('reportOrders');
+      console.log("reports in order");
+      console.log(reportIds);
+      console.log(reportIds.length);
+      // reportIds.forEach((item) => {
+      //   console.log(item); // Access each array item directly
+      // });
+
+      // for (const item of reportIds) {
+      //     console.log(item); // Access each array item directly
+      // // }
+      // for (let i = 0; i < reportIds.length; i++) {
+      //   console.log(reportIds[i]); // Access each array item using index i
+      // }
+
+
+      const apiData = localStorage.getItem('apiData');
+      let api_data = JSON.parse(apiData);
+      const dimensions = api_data.staticAxis.criteria
+
+      console.log(dimensions);
+
+      const container = document.getElementById('checkboxContainer2');
+      const dimensionsDropdown = document.getElementById('DimensionsDropdown2');
+      container.classList.remove('hidden');
+
+      const selectedDimensions = new Set();
+      const dropdownMap = new Map();
+
+
+
+      for (const item of dimensions) {
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.className = 'form-check-input'; // Add the appropriate class
+        checkbox.name = 'rowAlignment';
+        checkbox.id = `rowAlignment${item.dimension}`; // Generate a unique ID for each checkbox
+        checkbox.value = item.dimension;
+
+        const label = document.createElement('label');
+        label.className = 'form-check-label'; // Add the appropriate class
+        label.htmlFor = `rowAlignment${item.dimension}`;
+        label.appendChild(document.createTextNode(item.dimension));
+
+
+        const div = document.createElement('div');
+        div.className = 'form-check form-check-inline';
+        div.appendChild(checkbox);
+        div.appendChild(label);
+        console.log("here");
+
+        container.appendChild(div);
+
+        checkbox.addEventListener('change', async () => {
+          if (checkbox.checked) {
+            if (!dropdownMap.has(item.dimension)) {
+              await createDropdown(item.dimension);
+
+            }
+          } else {
+            if (dropdownMap.has(item.dimension)) {
+              console.log("hi joe");
+              removeDropdown(item.dimension);
+            }
+          }
+        });
+
+      }
+      container.appendChild(reportIds);
+    }
+
+    async function createDropdown(dimension) {
+      const selectDropdown = document.createElement('select');
+      selectDropdown.className = 'select2-icons form-select mb-3';
+      selectDropdown.dataset.dimension = dimension; // Store the dimension as a dataset attribute
+      const dimensionsDropdown = document.getElementById('DimensionsDropdown2');
+
+      // Add the select dropdown to the 'dimensionsDropdown' div
+      dimensionsDropdown.appendChild(selectDropdown);
+
+      const DData = await getDimensions(dimension);
+      const DimensionsData = JSON.parse(JSON.stringify(DData));
+
+      for (const option of DimensionsData.members) {
+        const dropdownOption = document.createElement('option');
+        dropdownOption.value = option.name;
+        dropdownOption.textContent = option.name;
+        selectDropdown.appendChild(dropdownOption);
+      }
+
+      // Store the dropdown reference in the map
+      dropdownMap.set(dimension, selectDropdown);
+    }
+
+    async function removeDropdown(dimension) {
+      let checkboxparameters = document.getElementById('checkboxContainer2').remove();
+      checkboxparameters.replaceChild("checkboxContainer")
+
+      // const selectDropdown = dropdownMap.get(dimension);
+      // if (selectDropdown) {
+      //   selectDropdown.remove();
+      //   dropdownMap.delete(dimension);
+      // }
+    }
+
+    function removeDropdown1() {
+      let checkboxparameters = document.getElementById('checkboxContainer2');
+      //   checkboxparameters.replaceChild("checkboxContainer2")
+      while (checkboxparameters.firstChild) {
+        checkboxparameters.removeChild(checkboxparameters.firstChild);
+      }
+      // const selectDropdown = dropdownMap.get(dimension);
+      // if (selectDropdown) {
+      //   selectDropdown.remove();
+      //   dropdownMap.delete(dimension);
+      // }
+    }
+
+    document.getElementById("refreshReportModal").addEventListener("click", populateModal);
+
+    function getSpecificOutput(value) {
+      if (value === 'noteThree') {
+        console.log("noteThree");
+        return 'noteThree';
+      } else if (value === 'noteEight') {
+        console.log("noteEight");
+        return 'noteEight';
+      } else if (value === 'noteFive') {
+        console.log("noteFive");
+        return 'noteFive';
+      } else {
+        return 'Default output';
+      }
+    }
+
 
     $(document).ready(function () {
       // Retrieve the stored JSON data from local storage
@@ -660,37 +815,37 @@
     });
 
 
-      async function createDropdown(dimension) {
-        const selectDropdown = document.createElement('select');
-        selectDropdown.className = 'select2-icons form-select mb-3';
-        selectDropdown.dataset.dimension = dimension; // Store the dimension as a dataset attribute
+    async function createDropdown(dimension) {
+      const selectDropdown = document.createElement('select');
+      selectDropdown.className = 'select2-icons form-select mb-3';
+      selectDropdown.dataset.dimension = dimension; // Store the dimension as a dataset attribute
 
-        // Add the select dropdown to the 'dimensionsDropdown' div
-        dimensionsDropdown.appendChild(selectDropdown);
+      // Add the select dropdown to the 'dimensionsDropdown' div
+      dimensionsDropdown.appendChild(selectDropdown);
 
-        const DData = await getDimensions(dimension);
-        const DimensionsData = JSON.parse(JSON.stringify(DData));
+      const DData = await getDimensions(dimension);
+      const DimensionsData = JSON.parse(JSON.stringify(DData));
 
-        for (const option of DimensionsData.members) {
-          const dropdownOption = document.createElement('option');
-          dropdownOption.value = option.name;
-          dropdownOption.textContent = option.name;
-          selectDropdown.appendChild(dropdownOption);
-        }
-
-        // Store the dropdown reference in the map
-        dropdownMap.set(dimension, selectDropdown);
+      for (const option of DimensionsData.members) {
+        const dropdownOption = document.createElement('option');
+        dropdownOption.value = option.name;
+        dropdownOption.textContent = option.name;
+        selectDropdown.appendChild(dropdownOption);
       }
 
-      function removeDropdown(dimension) {
-        const selectDropdown = dropdownMap.get(dimension);
-        if (selectDropdown) {
-          selectDropdown.remove();
-          dropdownMap.delete(dimension);
-        }
-      }
+      // Store the dropdown reference in the map
+      dropdownMap.set(dimension, selectDropdown);
+    }
 
-      async function fetchTableStyles() {
+    function removeDropdown(dimension) {
+      const selectDropdown = dropdownMap.get(dimension);
+      if (selectDropdown) {
+        selectDropdown.remove();
+        dropdownMap.delete(dimension);
+      }
+    }
+
+    async function fetchTableStyles() {
       var token = localStorage.getItem('aaroWebToken');
       try {
         const url = 'https://aaro-web.test/api/v1/reports/table_styles';
@@ -712,72 +867,72 @@
       }
     }
 
-  window.addEventListener("load", async () => {
-    const selectElement = document.getElementById("select2Icons");
+    window.addEventListener("load", async () => {
+      const selectElement = document.getElementById("select2Icons");
 
-    try {
-      const response = await fetchTableStyles();
+      try {
+        const response = await fetchTableStyles();
 
-      console.log('Response:', response);
+        console.log('Response:', response);
 
-      const tableStylesArray = Object.entries(response).map(([slug, name]) => ({ slug, name }));
+        const tableStylesArray = Object.entries(response).map(([slug, name]) => ({ slug, name }));
         // Group the table styles
         const groupedOptions = {
-            "Table Grid": [],
-            "Plain Table": [],
-            "Grid Table 1 Light": [],
-            "Grid Table 2": [],
-            "Grid Table 3": [],
-            "Grid Table 4": [],
-            "Grid Table 5 Dark": [],
-            "Grid Table 6 Colorful": [],
-            "Grid Table 7 Colorful": []
-            // Add more groups as needed
+          "Table Grid": [],
+          "Plain Table": [],
+          "Grid Table 1 Light": [],
+          "Grid Table 2": [],
+          "Grid Table 3": [],
+          "Grid Table 4": [],
+          "Grid Table 5 Dark": [],
+          "Grid Table 6 Colorful": [],
+          "Grid Table 7 Colorful": []
+          // Add more groups as needed
         };
 
         tableStylesArray.forEach((style) => {
-            if (style.name.startsWith("Table Grid")) {
-                groupedOptions["Table Grid"].push(style);
-            } else if (style.name.startsWith("Plain Table")) {
-                groupedOptions["Plain Table"].push(style);
-            } else if (style.name.startsWith("Grid Table 1 Light")) {
-                groupedOptions["Grid Table 1 Light"].push(style);
-            } else if (style.name.startsWith("Grid Table 2")) {
-                groupedOptions["Grid Table 2"].push(style);
-            } else if (style.name.startsWith("Grid Table 3")) {
-                groupedOptions["Grid Table 3"].push(style);
-            } else if (style.name.startsWith("Grid Table 4")) {
-                groupedOptions["Grid Table 4"].push(style);
-            } else if (style.name.startsWith("Grid Table 5 Dark")) {
-                groupedOptions["Grid Table 5 Dark"].push(style);
-            } else if (style.name.startsWith("Grid Table 6 Colorful")) {
-                groupedOptions["Grid Table 6 Colorful"].push(style);
-            } else if (style.name.startsWith("Grid Table 7 Colorful")) {
-                groupedOptions["Grid Table 7 Colorful"].push(style);
-            }
-            // Add more conditions to group the table styles based on your desired logic
+          if (style.name.startsWith("Table Grid")) {
+            groupedOptions["Table Grid"].push(style);
+          } else if (style.name.startsWith("Plain Table")) {
+            groupedOptions["Plain Table"].push(style);
+          } else if (style.name.startsWith("Grid Table 1 Light")) {
+            groupedOptions["Grid Table 1 Light"].push(style);
+          } else if (style.name.startsWith("Grid Table 2")) {
+            groupedOptions["Grid Table 2"].push(style);
+          } else if (style.name.startsWith("Grid Table 3")) {
+            groupedOptions["Grid Table 3"].push(style);
+          } else if (style.name.startsWith("Grid Table 4")) {
+            groupedOptions["Grid Table 4"].push(style);
+          } else if (style.name.startsWith("Grid Table 5 Dark")) {
+            groupedOptions["Grid Table 5 Dark"].push(style);
+          } else if (style.name.startsWith("Grid Table 6 Colorful")) {
+            groupedOptions["Grid Table 6 Colorful"].push(style);
+          } else if (style.name.startsWith("Grid Table 7 Colorful")) {
+            groupedOptions["Grid Table 7 Colorful"].push(style);
+          }
+          // Add more conditions to group the table styles based on your desired logic
         });
 
         // Generate the select options dynamically
         for (const groupName in groupedOptions) {
-            const group = document.createElement("optgroup");
-            group.label = groupName;
-            groupedOptions[groupName].forEach((optionValue) => {
-                const option = document.createElement("option");
-                option.value = optionValue.slug; // Use the 'slug' property as the option value
-                option.textContent = optionValue.name; // Use the 'name' property as the option text
-                group.appendChild(option);
-            });
-            selectElement.appendChild(group);
+          const group = document.createElement("optgroup");
+          group.label = groupName;
+          groupedOptions[groupName].forEach((optionValue) => {
+            const option = document.createElement("option");
+            option.value = optionValue.slug; // Use the 'slug' property as the option value
+            option.textContent = optionValue.name; // Use the 'name' property as the option text
+            group.appendChild(option);
+          });
+          selectElement.appendChild(group);
         }
-    } catch (error) {
+      } catch (error) {
         console.error('Error loading table styles:', error);
-    }
-});
+      }
+    });
 
 
 
-    
+
 
   </script>
 </body>
