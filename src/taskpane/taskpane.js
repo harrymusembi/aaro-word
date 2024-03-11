@@ -12,23 +12,19 @@
 // eslint-disable-next-line office-addins/no-office-initialize
 Office.onReady((info) => {
   if (info.host === Office.HostType.Word) {
-    document.getElementById("noteThree").onclick = insertTable;
+    document.getElementById("loginButton").addEventListener("click", function () {
+      // Check if the Office context is ready and the host supports dialog box
+      if (Office && Office.context && Office.context.ui && Office.context.ui.displayDialogAsync) {
+        // Get the database URL from the input field
+        const databaseUrl = document.getElementById("database_url").value;
 
-    document.getElementById("consolidatedBalance").onclick = consolidatedBalanceProcess;
-
-    document.getElementById("noteEight").onclick = insertTableNoteEightProcess;
-    document.getElementById("PotraitNoteEight").onclick = changePageOrientationToPotrait;
-    document.getElementById("LandscapeNoteEight").onclick = changePageOrientationToLandscape;
-
-    const tableStylesDropdown = document.getElementById("tableStylesDropdown");
-
-    tableStylesDropdown.addEventListener("change", () => {
-      const selectedStyle = tableStylesDropdown.value;
-      insertTable(selectedStyle);
-      // console.log(selectedStyle);
-      //modifyTableStyle(selectedStyle);
+        // Open a dialog box with the specified URL
+        Office.context.ui.displayDialogAsync(databaseUrl, { height: 30, width: 20 });
+      } else {
+        // Office JavaScript API is not available
+        console.error("Office JavaScript API is not available.");
+      }
     });
-
   }
 });
  

@@ -1,7 +1,5 @@
 /* jsTree default theme */
-.jstree-node,
-.jstree-children,
-.jstree-container-ul {
+.jstree-node, .jstree-children, .jstree-container-ul {
   display: block;
   margin: 0;
   padding: 0;

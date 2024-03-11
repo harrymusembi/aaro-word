@@ -23,28 +23,21 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons@latest/iconfont/tabler-icons.min.css">
-
-
-
   <!-- Core CSS -->
   <link rel="stylesheet" type="text/css" href="./../../assets/vendor/css/rtl/core.css" />
   <link rel="stylesheet" type="text/css" href="./../../assets/vendor/css/rtl/theme-semi-dark.css" />
   <link rel="stylesheet" type="text/css" href="./../../assets/css/demo.css" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
 
   <link rel='stylesheet' href="./../../assets/css/wizard/bootstrap.min.css" rel="stylesheet" />
   <link rel='stylesheet' href="./../../assets/css/wizard/paper-bootstrap-wizard.css" rel="stylesheet" />
   <link rel='stylesheet' href="./../../assets/css/wizard/themify-icons.css" rel="stylesheet">
-  <!-- <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css'> -->
-  <link rel="stylesheet" href="./../../assets/vendor/libs/jstree/jstree.css" />
-
-
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css'>
   <!-- Helpers -->
   <script src="./../../assets/vendor/js/helpers.js" type="text/javascript"></script>
+  <script src="./../../assets/js/config.js"></script>
 
-
-
+  <link rel="stylesheet" href="./../../assets/vendor/libs/jstree/jstree.css" />
   <script src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js" type="text/javascript"></script>
 
   <!-- For more information on Fluent UI, visit https://developer.microsoft.com/fluentui#/. -->
@@ -105,24 +98,24 @@
     .wizard-card .icon-circle {
       font-size: 30px;
       text-align: center;
-      
-    }
-    .wizard-card .icon-circle i{
-      
-      
-      margin-top: 15px
-      
+
     }
 
-    .nav-pills > li > a > i {
+    .wizard-card .icon-circle i {
+
+
+      margin-top: 15px
+    }
+
+    .nav-pills>li>a>i {
 
       color: #fff;
     }
-    
-    .wizard-card .icon-circle i::after{
-      
+
+    .wizard-card .icon-circle i::after {
+
       color: white;
-      
+
     }
 
     .nav-pills>li>a>div>i ::after {
@@ -136,57 +129,68 @@
     .jstree-default {
       margin-left: 100px;
     }
+
+    html:not([dir=rtl]) .me-3 {
+      margin-right: 0 !important;
+    }
+
+    .nav-link {
+
+      padding: 0 !important;
+    }
+    .btn-next input {
+      border: none !important;
+      color: #000000;
+      background-color: #55a5e7;
+    }
+
+    .btn-previous input {
+      border: none !important;
+      color: #000000;
+      /* background-color: #55a5e7; */
+    }
+
+    .btn-finish input {
+      border: none !important;
+      color: #000000;
+      /* background-color: #55a5e7; */
+    }
   </style>
 
 
 </head>
 
 <body>
+  <div class="loader-overlay" id="loader">
+    <div class="loader-spinner"></div>
+  </div>
   <!-- Layout wrapper -->
-
   <div class="layout-wrapper layout-content-navbar">
     <div class="layout-container">
       <!-- Menu -->
-
       <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
         <div class="app-brand demo">
-          <a href="index.html" class="app-brand-link">
+          <a href="templates.html" class="app-brand-link">
             <span class="app-brand-logo demo">
-              <img src="./../../assets/img/branding/aaro-logo-80.png" alt width="40px" height="20px">
+              <img src="./../../assets/img/branding/aaro-logo-80.png" alt="" width="40px" height="20px">
             </span>
             <span class="app-brand-text demo menu-text fw-bold">AARO SYSTEMS</span>
           </a>
         </div>
-
-        <!-- <div class="menu-inner-shadow"></div> -->
-
         <ul class="menu-inner py-1">
-          <!-- Dashboards -->
-          <li class="menu-item">
-            <a href="index.html" class="menu-link">
-              <i class="menu-icon fas fa-home"></i>
-              <div data-i18n="Dashboards">Templates</div>
-              <!-- <div class="badge bg-label-primary rounded-pill ms-auto">3</div> -->
-            </a>
-          </li>
-
           <!-- Layouts -->
           <li class="menu-item">
             <a href="templates.html" class="menu-link">
               <i class="menu-icon fas fa-file-alt"></i>
-              <div data-i18n="Layouts">Reports</div>
+              <div data-i18n="Dashboards">Dashboard</div>
             </a>
-
           </li>
-
           <li class="menu-item active">
             <a href="uploads.html" class="menu-link">
               <i class="menu-icon fas fa-file-upload"></i>
-              <div data-i18n="Layouts">V1</div>
+              <div data-i18n="Layouts">New Report</div>
             </a>
-
           </li>
-
         </ul>
       </aside>
       <!-- / Menu -->
@@ -194,102 +198,102 @@
       <div class="layout-page">
         <!-- Navbar -->
         <nav
-          class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
-          id="layout-navbar">
-          <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
-            <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
-              <i class="fas fa-bars"></i>
-            </a>
-          </div>
+        class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+        id="layout-navbar">
+        <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+          <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+            <i class="fas fa-bars"></i>
+          </a>
+        </div>
 
-          <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
-            <!-- Search -->
+        <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+          <!-- Search -->
 
-            <!-- /Search -->
+          <!-- /Search -->
 
-            <ul class="navbar-nav flex-row align-items-center ms-auto">
+          <ul class="navbar-nav flex-row align-items-center ms-auto">
 
-              <!-- User -->
-              <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-                  <div class="avatar avatar-online">
-                    <img src="../../assets/img/illustrations/card-advance-sale.png" alt class="h-auto rounded-circle" />
-                  </div>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end">
-                  <li>
-                    <a class="dropdown-item" href="pages-account-settings-account.html">
-                      <div class="d-flex">
-                        <div class="flex-shrink-0 me-3">
-                          <div class="avatar avatar-online">
-                            <img src="../../assets/img/avatars/1.png" alt class="h-auto rounded-circle" />
-                          </div>
-                        </div>
-                        <div class="flex-grow-1">
-                          <span class="fw-semibold d-block" id="username"></span>
-                          <small class="text-muted">Admin</small>
+            <!-- User -->
+            <li class="nav-item navbar-dropdown dropdown-user dropdown">
+              <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                <div class="avatar avatar-online">
+                  <img src="../../assets/img/illustrations/card-advance-sale.png" alt class="h-auto rounded-circle" />
+                </div>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                  <a class="dropdown-item" href="pages-account-settings-account.html">
+                    <div class="d-flex">
+                      <div class="flex-shrink-0 me-3">
+                        <div class="avatar avatar-online">
+                          <img src="../../assets/img/avatars/1.png" alt class="h-auto rounded-circle" />
                         </div>
                       </div>
-                    </a>
-                  </li>
-                  <li>
-                    <div class="dropdown-divider"></div>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="pages-profile-user.html">
-                      <i class="fas fa-user-check"></i>
-                      <span class="align-middle">My Profile</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="pages-account-settings-account.html">
-                      <i class="fas fa-cog"></i>
-                      <span class="align-middle">Settings</span>
-                    </a>
-                  </li>
-
+                      <div class="flex-grow-1">
+                        <span class="fw-semibold d-block" id="username"></span>
+                        <small class="text-muted">Admin</small>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li>
                   <div class="dropdown-divider"></div>
-              </li>
-              <li>
-                <a class="dropdown-item" href="pages-help-center-landing.html">
-                  <i class="fas fa-life-ring"></i>
-                  <span class="align-middle">Help</span>
-                </a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="pages-faq.html">
-                  <!-- <i class="fas fa-circle-question"></i> -->
-                  <i class="fas fa-circle-question"></i>
-                  <span class="align-middle">FAQ</span>
-                </a>
-              </li>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="pages-profile-user.html">
+                    <i class="fas fa-user-check"></i>
+                    <span class="align-middle">My Profile</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="pages-account-settings-account.html">
+                    <i class="fas fa-cog"></i>
+                    <span class="align-middle">Settings</span>
+                  </a>
+                </li>
 
-              <li>
                 <div class="dropdown-divider"></div>
-              </li>
-              <li>
-                <a class="dropdown-item" id="logoutButton">
-                  <i class="fas fa-right-from-bracket"></i>
-                  <span class="align-middle">Log Out</span>
-                </a>
-              </li>
-            </ul>
             </li>
-            <!--/ User -->
-            </ul>
-          </div>
+            <li>
+              <a class="dropdown-item" href="pages-help-center-landing.html">
+                <i class="fas fa-life-ring"></i>
+                <span class="align-middle">Help</span>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="pages-faq.html">
+                <!-- <i class="fas fa-circle-question"></i> -->
+                <i class="fas fa-circle-question"></i>
+                <span class="align-middle">FAQ</span>
+              </a>
+            </li>
 
-          <!-- Search Small Screens -->
-          <div class="navbar-search-wrapper search-input-wrapper d-none">
-            <input type="text" class="form-control search-input container-xxl border-0" placeholder="Search..."
-              aria-label="Search..." />
-            <i class="ti ti-x ti-sm search-toggler cursor-pointer"></i>
-          </div>
-        </nav>
+            <li>
+              <div class="dropdown-divider"></div>
+            </li>
+            <li>
+              <a class="dropdown-item" id="logoutButton">
+                <i class="fas fa-right-from-bracket"></i>
+                <span class="align-middle">Log Out</span>
+              </a>
+            </li>
+          </ul>
+          </li>
+          <!--/ User -->
+          </ul>
+        </div>
+
+        <!-- Search Small Screens -->
+        <div class="navbar-search-wrapper search-input-wrapper d-none">
+          <input type="text" class="form-control search-input container-xxl border-0" placeholder="Search..."
+            aria-label="Search..." />
+          <i class="ti ti-x ti-sm search-toggler cursor-pointer"></i>
+        </div>
+      </nav>
         <!-- Content wrapper -->
-        <div class="content-wrapper">
+        <div class="content-wrapper" >
           <!-- Content -->
-          <div class="container-xxl flex-grow-1 container-p-y">
+          <div class="container-xxl flex-grow-1 container-p-y" id="main-container">
 
             <div class="row">
               <div class="col-md-12 col-12">
@@ -315,21 +319,21 @@
                           </div>
                           <ul>
                             <li>
-                              <a href="#start" data-toggle="tab">
+                              <a href="#report" data-toggle="tab">
                                 <div class="icon-circle">
                                   <i class="fa fa-arrow-right"></i>
                                 </div>
                                 Start
                               </a>
                             </li>
-                            <li>
+                            <!-- <li>
                               <a href="#report" data-toggle="tab">
                                 <div class="icon-circle">
                                   <i class="fa fa-file-alt"></i>
                                 </div>
                                 Report
                               </a>
-                            </li>
+                            </li> -->
                             <li>
                               <a href="#format" data-toggle="tab">
                                 <div class="icon-circle">
@@ -349,7 +353,7 @@
                           </ul>
                         </div>
                         <div class="tab-content">
-                          <div class="tab-pane" id="start">
+                          <!-- <div class="tab-pane" id="start">
                             <div class="row">
                               <div class="col-sm-12">
                                 <h5 class="info-text"> Kindly select the report you want to load on your
@@ -410,12 +414,10 @@
                                 </table>
                               </div>
                             </div>
-                          </div>
+                          </div> -->
                           <div class="tab-pane" id="report">
                             <div id="jstree-ajax"></div>
                           </div>
-
-
 
                           <div class="tab-pane" id="format">
                             <h5 class="info-text">Please Select the format to load the report. </h5>
@@ -500,9 +502,6 @@
 
           <!--/ Add New Address Modal -->
         </div>
-        <!-- / Content -->
-
-        <!-- / Content -->
 
         <!-- Footer -->
         <footer class="content-footer footer bg-footer-theme">
@@ -511,11 +510,7 @@
               class="footer-container d-flex align-items-center justify-content-between py-2 flex-md-row flex-column">
               <div>
                 ©
-                <script>
-                  document.write(new Date().getFullYear());
-                </script>
-                , <a href="https://www.aaro.com" target="_blank" class="fw-semibold">AARO
-                  SYSTEMS</a>
+                <script> document.write(new Date().getFullYear()); </script> , <a href="https://www.aaro.com" target="_blank" class="fw-semibold">AARO SYSTEMS</a>
               </div>
 
             </div>
@@ -536,8 +531,6 @@
   <!-- Drag Target Area To SlideIn Menu On Small Screens -->
   <div class="drag-target"></div>
   </div>
-
-
   <!-- Core JS -->
   <!-- build:js ./../../assets/vendor/js/core.js -->
   <script type="text/javascript" src="uploads.js"></script>
@@ -546,9 +539,8 @@
   <!-- <script type="text/javascript" src="./../../assets/vendor/js/bootstrap.js"></script> -->
   <script type="text/javascript" src="./../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
   <script type="text/javascript" src="./../../assets/vendor/libs/node-waves/node-waves.js"></script>
-
+  <script type="text/javascript" src="./../../assets/vendor/libs/jstree/jstree.css"></script>
   <script type="text/javascript" src="./../../assets/vendor/libs/hammer/hammer.js"></script>
-
   <script type="text/javascript" src="./../../assets/vendor/js/menu.js"></script>
   <!-- endbuild -->
 
@@ -559,7 +551,6 @@
   <script type="text/javascript" src="./../../assets/vendor/libs/jstree/jstree.css"></script>
   <script type="text/javascript" src="./../../assets/vendor/libs/jstree/jstree.js"></script>
 
-
   <!--  Plugin for the Wizard -->
   <!-- <script src="assets/js/demo.js" type="text/javascript"></script> -->
   <script src="./../../assets/js/wizard/paper-bootstrap-wizard.js" type="text/javascript"></script>
@@ -569,8 +560,21 @@
 
   <!-- <script type="text/javascript" src="templates.js"></script> -->
   <!-- Main JS -->
-  <!-- <script type="text/javascript" src="./../../assets/js/main.js"></script> -->
+  <script type="text/javascript" src="./../../assets/js/main.js"></script>
   <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var loader = document.getElementById('loader');
+      var mainContainer = document.getElementById('main-container');
+
+      // Show loader overlay
+      loader.style.display = 'flex'; // Make the loader overlay visible
+
+      // Hide the loader when the main container finishes loading
+      window.addEventListener('load', function () {
+        loader.style.display = 'none'; // Hide the loader overlay
+      });
+    });
+
     $(document).ready(function () {
       // Initially hide the "Load Report" button
       $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
@@ -1038,6 +1042,7 @@
           readOnlyTextBox.className = 'form-control';
           readOnlyTextBox.value = item.value;
           readOnlyTextBox.readOnly = true;
+          readOnlyTextBox.id = `${item.dimension}-txt`;
 
           // Append the label and read-only text box to the container div
           divContainer.appendChild(label);

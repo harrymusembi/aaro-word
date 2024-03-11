@@ -163,7 +163,11 @@ Office.onReady((info) => {
           await context.sync();
 
           for (let index = 0; index < tables.items.length; index++) {
+
+            console.log("INDEX:", index);
             const table = tables.items[index];
+            
+            const originalPosition = await getParagraphBeforeSpecificTable(index);
 
             const range = table.getRange();
             var line_number = range.load("startLineNumber");
@@ -183,16 +187,17 @@ Office.onReady((info) => {
               const new_data = JSON.parse(tag);
 
               // // if ( index == 2 ) {
-
-                table.delete();
-                insertTable(new_data.selectValue, new_data.data, '', '', '', new_data.tableTemplateSelect);
-                console.log("Previous Table deleted and New Table inserted");
+                
+                console.log("Original Position:", originalPosition);
+              table.delete();
+              insertTable(new_data.selectValue, new_data.data, '', '', '', new_data.tableTemplateSelect);
+              console.log("Previous Table deleted and New Table inserted");
 
               // // }
 
               console.log(`Report Name - ${new_data.tableTemplateSelect}`);
               console.log(`Table ${index + 1} - ${new_data.reportID}`);
-              console.log(`Data - ${JSON.stringify(new_data.data)}`);
+              // console.log(`Data - ${JSON.stringify(new_data.data)}`);
               console.log(`Template - ${new_data.selectValue}`);
 
             } else {
@@ -209,6 +214,171 @@ Office.onReady((info) => {
 
   }
 });
+
+
+async function getParagraphBeforeSpecificTable(tableIndex) {
+  try {
+    await Word.run(async (context) => {
+      // Get the tables in the document.
+      const tables = context.document.body.tables;
+
+      // Load the tables and their properties.
+      tables.load("items");
+      await context.sync();
+
+      // Get the specific table by its index.
+      const specificTable = tables.items[tableIndex];
+
+      // Check if the table has a previous sibling.
+      if (!specificTable.hasPreviousSibling()) {
+        console.log("No paragraph before the table.");
+        return;
+      }
+
+      // Get the paragraph before the table.
+      const previousParagraph = specificTable.getPreviousSibling();
+
+      // Check if the previous sibling is a paragraph.
+      if (!previousParagraph.isParagraphObject) {
+        console.log("Previous sibling is not a paragraph.");
+        return;
+      }
+
+      // Load the paragraph properties.
+      previousParagraph.load("text");
+      await context.sync();
+
+      // Access the text content of the paragraph.
+      const paragraphText = previousParagraph.text;
+
+      // Do something with the paragraph text (e.g., log it).
+      console.log("Previous paragraph text:", paragraphText);
+    });
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
+
+async function findTableOriginalPosition(tableId) {
+  let originalPosition = -1;
+
+  await Word.run(async (context) => {
+    const bookmarks = context.document.body.bookmarks;
+
+    // Get all bookmarks
+    const paragraphCount = context.document.body.paragraphs.getCount();
+    console.log("paragraph Count -" , paragraphCount);
+    // Load bookmarks
+    bookmarks.load("items");
+
+    // Synchronize and execute the queued commands
+    await context.sync();
+
+    // Check if there are bookmarks
+    if (bookmarks.items.length > 0) {
+      // Iterate through bookmarks to find the one with the specified ID
+      for (let i = 0; i < bookmarks.items.length; i++) {
+        const bookmark = bookmarks.items[i];
+        bookmark.load("tag, paragraphs");
+      }
+
+      // Synchronize and execute the queued commands
+      await context.sync();
+
+      // Iterate through bookmarks to find the one with the specified ID
+      for (let i = 0; i < bookmarks.items.length; i++) {
+        const bookmark = bookmarks.items[i];
+
+        if (bookmark.tag && bookmark.tag.includes(tableId)) {
+          originalPosition = bookmark.paragraphs.getFirst().index;
+          break;
+        }
+      }
+    } else {
+      console.warn("No bookmarks found.");
+    }
+  });
+
+  return originalPosition;
+}
+
+
+async function findTableByIndexAndGetPosition(tableIndex) {
+  try {
+    let originalPosition = -1;
+
+    await Word.run(async (context) => {
+      const body = context.document.body;
+      const paragraphs = body.paragraphs;
+
+      // Load the paragraphs and tables for synchronization
+      paragraphs.load("items");
+      const tables = body.tables;
+      tables.load("items");
+      await context.sync();
+
+
+      if (tableIndex >= 0 && tableIndex < tables.items.length) {
+        const targetTable = tables.items[tableIndex];
+        const targetTableRange = targetTable.getRange();
+        console.log("TABLE ITEMS:", tables.items.length);
+        // Iterate through the paragraphs to find the original position
+        for (let i = 0; i < paragraphs.items.length; i++) {
+          const paragraph = paragraphs.items[i];
+          const paragraphRange = paragraph.getRange();
+
+          await context.sync();
+
+          console.log("paragraph start:", paragraphRange.start);
+          console.log("paragraph end:", paragraphRange.end);
+
+          console.log("targetTableRange start:", targetTableRange.start);
+          console.log("targetTableRange end:", targetTableRange.start);
+
+
+          // Check if the start position of the table range is within the paragraph range
+          if (targetTableRange.start >= paragraphRange.start && targetTableRange.start <= paragraphRange.end) {
+            originalPosition = i;
+            break;
+          }
+        }
+
+        console.log("Original Position:", originalPosition);
+      }
+      // Check if the table index is within the bounds
+      if (tableIndex >= 0 && tableIndex < tables.items.length) {
+        const targetTable = tables.items[tableIndex];
+
+        // Iterate through the paragraphs to find the original position
+        for (let i = 0; i < paragraphs.items.length; i++) {
+
+          const paragraph = paragraphs.items[i];
+
+          // Check if the range of the paragraph intersects with the range of the target table
+          if (targetTable.getRange().start >= paragraph.getRange().start && targetTable.getRange().end <= paragraph.getRange().end) {
+            originalPosition = i;
+            break;
+          }
+        }
+
+        console.log("Original Position:", originalPosition);
+      } else {
+        console.warn("Table index is out of bounds.");
+      }
+
+      // Synchronize and execute the queued commands
+      await context.sync();
+    });
+
+
+  } catch (error) {
+    // Handle errors
+    console.error(error);
+    return -1; // Return a default value indicating an error
+  }
+}
+
+
 
 async function getTables() {
   try {
@@ -235,7 +405,7 @@ async function getTables() {
           await context.sync();
           // Retrieve the tag from the content control.
           const tag = contentControls.items[index].tag;
-         
+
           // console.log('Tag from Content Control:', tag);
           // Process the tag data.
           const new_data = JSON.parse(tag);
@@ -387,8 +557,6 @@ async function insertTable(
       }
 
       await context.sync();
-
-      await context.sync();
       console.log(serializedData)
       //   table.styleBuiltIn = Word.Style['gridTable5Dark_Accent5'];
       table.styleBuiltIn = Word.Style[selectValue];
@@ -396,9 +564,17 @@ async function insertTable(
 
 
 
-      console.log('Report id:', reportID);
-      table.id = reportID;
+      // console.log('Report id:', reportID);
+      // table.id = reportID;
+
+      // const body = context.document.body;
+      // const marker = body.insertContentControl();
+      // marker.tag = "TableMarker";
+      // marker.title = "Marker";
+      // marker.insertText(`TableID:${reportID}`, "start");
       // Now load and set alignment for cells
+      const bookmark = table.insertBookmark(`TableBookmark_${reportID}`, "end");
+      await context.sync();
       const rows = table.rows;
       rows.load('items');
       await context.sync();

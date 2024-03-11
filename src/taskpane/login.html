@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Load URL in Iframe</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none; /* Optional: removes border around iframe */
+        }
+    </style>
+</head>
+<body>
+    <iframe id="urlIframe" src="" frameborder="0"></iframe>
+
+    <script>
+        // Function to extract URL parameter value from the query string
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        // Get the URL parameter value for 'url'
+        var urlParam = getParameterByName('url');
+
+        // Set the source of the iframe to the URL parameter value
+        document.getElementById('urlIframe').src = urlParam;
+    </script>
+</body>
+</html>

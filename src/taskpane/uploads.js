@@ -11,13 +11,13 @@
 
 // eslint-disable-next-line office-addins/no-office-initialize
 Office.onReady((info) => {
-  if (info.host === Office.HostType.Word) {
-    document.getElementById("templateSubmit").onclick = submitForm;
+  // if (info.host === Office.HostType.Word) {
+  //   document.getElementById("templateSubmit").onclick = submitForm;
 
-    // document.getElementById("templateSubmit").onclick = function () {
-    //   console.log('harry')
-    // };
-  }
+  //   // document.getElementById("templateSubmit").onclick = function () {
+  //   //   console.log('harry')
+  //   // };
+  // }
 });
 
 async function submitForm() {

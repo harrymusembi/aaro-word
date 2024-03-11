@@ -4,6 +4,7 @@
 /public/storage
 /storage/*.key
 /vendor
+/dist
 .env
 .env.backup
 .phpunit.result.cache
@@ -20,3 +21,10 @@ yarn-error.log
 /app/bck
 /mysql
 aaro-test.rar
+/dist
+*.crt
+*.csr
+*.key
+*.tgz
+*.deployment
+*.sh
