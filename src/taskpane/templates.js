@@ -325,7 +325,7 @@ async function loadJSTreeData() {
 }
 
 async function login() {
-  const url = 'https://aaro-web.test/api/v1/auth/login';
+  const url = 'https://word-addin.aarotest.se/api/v1/auth/login';
   const credentials = {
     email: 'doyle.abagail@example.net',
     password: '!admin123!'
@@ -369,7 +369,7 @@ function stringifySafe(obj, depth = 5) {
 
 
 function results(selectedNodeId, token) {
-  const otherApiUrl = `https://aaro-web.test/api/v1/reports/report/${selectedNodeId}`;
+  const otherApiUrl = `https://word-addin.aarotest.se/api/v1/reports/report/${selectedNodeId}`;
 
   let reportId = parseInt(selectedNodeId, 10);
   if (typeof reportId === 'number' && Number.isInteger(reportId)) {
@@ -418,7 +418,7 @@ function results(selectedNodeId, token) {
 
 // Call the login function and use the token for subsequent API calls
 async function browseWithToken(token) {
-  const url = 'https://aaro-web.test/api/v1/reports/browse'; // Replace with the actual API endpoint
+  const url = 'https://word-addin.aarotest.se/api/v1/reports/browse'; // Replace with the actual API endpoint
 
   const response = await fetch(url, {
     method: 'GET',
@@ -462,7 +462,7 @@ async function browseWithToken(token) {
           },
           check_callback: true,
           data: {
-            url: "https://aaro-web.test/api/v1/reports/browse",
+            url: "https://word-addin.aarotest.se/api/v1/reports/browse",
             method: 'POST',
             dataType: 'json',
             data: function (node) {
